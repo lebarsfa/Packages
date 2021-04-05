@@ -1,0 +1,2 @@
+﻿
+From: https://doc.qt.io/qt-5/licenses-used-in-qt.html
