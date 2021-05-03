@@ -22,7 +22,7 @@ Qt 5 development defaults package.
 - After installing Chocolatey, run `choco install -y qt5-default qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
 
 ## Troubleshooting
-- Check that all packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using --force...
+- Check that all packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using --force or try a previous version...
 - If multiple versions of the Qt SDK are already installed, Qt Creator might need to be reconfigured to list them. Please backup %APPDATA%\QtProject\qtcreator\qtversion.xml before installation and check it after or update Tools\Options\Kits in Qt Creator if needed.
     </description>
     <releaseNotes>https://wiki.qt.io/Template:Release_Information</releaseNotes>
