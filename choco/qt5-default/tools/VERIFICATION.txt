@@ -1,6 +1,0 @@
-﻿
-VERIFICATION
-Verification is intended to assist the Chocolatey moderators and community
-in verifying that this package's contents are trustworthy.
- 
-The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/bionic/qt5-default. It uses https://github.com/miurahr/aqtinstall (which requires Python) to install the latest LTS version of Qt 5 SDK, and prepare a configuration file for Qt Creator to detect that SDK. The MinGW version is chosen as the current one available on GitHub Actions.
