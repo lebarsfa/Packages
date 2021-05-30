@@ -1,5 +1,9 @@
 **/*.pyc
 **/__pycache__/
 **/*.nupkg
+**/*.exe
+**/*.EXE
+**/*.msi
+**/*.MSI
 **/TODO
 !*ReadMe.txt
