@@ -13,13 +13,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://code.qt.io/</projectSourceUrl>
     <docsUrl>https://wiki.qt.io/</docsUrl>
-    <tags>Qt</tags>
+    <tags>Qt SDK C++ CPP</tags>
     <summary>Qt 5 development defaults package.</summary>
     <description>
 Qt 5 development defaults package.
 
 ## Quick start
-- After installing Chocolatey, run `choco install -y qt5-default qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
+- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y qt5-default qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
 
 ## Troubleshooting
 - Check that all packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using --force or try a previous version...

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ros-noetic-hector_gazebo_plugins</id>
+    <version>0.0.1</version>
+    <title>ros-noetic-hector_gazebo_plugins ROS package</title>
+    <owners>lebarsfa</owners>
+    <authors>Technische Universität Darmstadt</authors>
+    <licenseUrl>https://github.com/tu-darmstadt-ros-pkg/hector_gazebo</licenseUrl>
+    <projectUrl>https://github.com/tu-darmstadt-ros-pkg/hector_gazebo</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ros-noetic-hector_gazebo_plugins for ROS on Windows.</description>
+    <summary>ros-noetic-hector_gazebo_plugins packaged as a rosdep.</summary>
+    <tags>ros ros-noetic-hector_gazebo_plugins</tags>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/ros-noetic-hector_gazebo</packageSourceUrl>
+    <docsUrl>https://github.com/tu-darmstadt-ros-pkg/hector_gazebo</docsUrl>
+  </metadata>
+</package>
