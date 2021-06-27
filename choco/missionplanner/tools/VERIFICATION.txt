@@ -3,4 +3,4 @@ VERIFICATION
 Verification is intended to assist the Chocolatey moderators and community
 in verifying that this package's contents are trustworthy.
  
-The installer have been downloaded from the official download link which is currently https://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-stable.msi, then it should be moved to https://firmware.ardupilot.org/Tools/MissionPlanner/archive/ when a more recent version appears.
+The installer have been downloaded from the official download link which is currently https://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-stable.zip, then it should be moved to https://firmware.ardupilot.org/Tools/MissionPlanner/archive/ when a more recent version appears.

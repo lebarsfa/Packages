@@ -3,6 +3,8 @@
 **/*.nupkg
 **/*.exe
 **/*.EXE
+**/*.zip
+**/*.ZIP
 **/*.msi
 **/*.MSI
 **/TODO

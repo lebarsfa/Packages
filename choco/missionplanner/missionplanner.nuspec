@@ -27,6 +27,10 @@ Mission Planner is a ground control station for Plane, Copter and Rover. Mission
   - Record telemetry logs which contain much more information the the on-board autopilot logs.
   - View and analyze the telemetry logs.
   - Operate your vehicle in FPV (first person view).
+
+## Troubleshooting
+- Check that all packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using --force or try a previous version...
+- You might need to install manually the drivers for your hardware, see https://firmware.ardupilot.org/Tools/MissionPlanner/driver.msi and/or https://firmware.ardupilot.org/Tools/WindowsDrivers.zip.
     </description>
     <releaseNotes>https://github.com/ArduPilot/MissionPlanner/blob/master/ChangeLog.txt</releaseNotes>
     <dependencies>
