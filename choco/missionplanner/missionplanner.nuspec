@@ -35,9 +35,9 @@ Mission Planner is a ground control station for Plane, Copter and Rover. Mission
     <releaseNotes>https://github.com/ArduPilot/MissionPlanner/blob/master/ChangeLog.txt</releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="dotnet3.5" />
-      <dependency id="dotnet4.6.1" />
-      <dependency id="vcredist140" />
+      <dependency id="dotnet3.5" version="3.5" />
+      <dependency id="dotnet4.6.1" version="4.6.01055.00" />
+      <dependency id="vcredist140" version="14.24.28127.4" />
     </dependencies>
   </metadata>
 </package>
