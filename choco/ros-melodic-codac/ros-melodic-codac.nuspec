@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ros-melodic-codac</id>
+    <version>0.1.3</version>
+    <title>ros-melodic-codac ROS package</title>
+    <authors>Codac Team</authors>
+    <owners>lebarsfa</owners>
+    <licenseUrl>https://github.com/codac-team/codac/blob/master/COPYING.LESSER</licenseUrl>
+    <projectUrl>http://codac.io/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ros-melodic-codac for ROS on Windows.</description>
+    <summary>ros-melodic-codac packaged as a rosdep.</summary>
+    <tags>ros ros-melodic-codac</tags>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/ros-melodic-codac</packageSourceUrl>
+    <docsUrl>http://codac.io/</docsUrl>
+  </metadata>
+</package>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ros-melodic-ibex</id>
+    <version>2.8.9</version>
+    <title>ros-melodic-ibex ROS package</title>
+    <authors>IBEX Team</authors>
+    <owners>lebarsfa</owners>
+    <licenseUrl>https://github.com/ibex-team/ibex-lib/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://www.ibex-lib.org/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ros-melodic-ibex for ROS on Windows.</description>
+    <summary>ros-melodic-ibex packaged as a rosdep.</summary>
+    <tags>ros ros-melodic-ibex</tags>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/ros-melodic-ibex</packageSourceUrl>
+    <docsUrl>http://www.ibex-lib.org/</docsUrl>
+  </metadata>
+</package>
