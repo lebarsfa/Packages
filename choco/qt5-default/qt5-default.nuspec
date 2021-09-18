@@ -13,7 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://code.qt.io/</projectSourceUrl>
     <docsUrl>https://wiki.qt.io/</docsUrl>
-    <tags>Qt SDK C++ CPP</tags>
+    <tags>Qt SDK programming library C++ CPP</tags>
     <summary>Qt 5 development defaults package.</summary>
     <description>
 Qt 5 development defaults package.
