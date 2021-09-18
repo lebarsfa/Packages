@@ -3,7 +3,7 @@
   <metadata>
     <id>libopencv-dev</id>
     <version>3.2.0</version>
-    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/libopencv-dev</packageSourceUrl>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.3.2.0/choco/libopencv-dev</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>OpenCV</title>
     <authors>Itseez</authors>
