@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>qtcreator</id>
+    <version>4.13.3.20211210</version>
+    <title>Qt Creator</title>
+    <authors>Qt Project</authors>
+    <owners>AdmiringWorm</owners>
+    <licenseUrl>http://code.qt.io/cgit/qt-creator/qt-creator.git/plain/LICENSE.GPL3-EXCEPT?h=4.1</licenseUrl>
+    <projectUrl>http://wiki.qt.io/Qt_Creator</projectUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/AdmiringWorm/chocolatey-packages@35eb3e49edb3411d779f64e57ef023abac8a3a06/icons/qtcreator.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Qt Creator provides a cross-platform, complete integrated development environment (IDE) for application developers to create applications for multiple desktop and mobile device platforms, such as Android and iOS.</description>
+    <summary>Cross-platform IDE for easy creation of connected devices, UIs and applications.</summary>
+    <releaseNotes>[Software Changelog](http://code.qt.io/cgit/qt-creator/qt-creator.git/plain/dist/changes-4.13.3.md)
+[Package Changelog](https://github.com/AdmiringWorm/chocolatey-packages/blob/master/automatic/qtcreator/Changelog.md)</releaseNotes>
+    <copyright>© 2016 The Qt Company Ltd.</copyright>
+    <tags>c++ qt ide qtcreator admin</tags>
+    <projectSourceUrl>http://code.qt.io/cgit/qt-creator/qt-creator.git/</projectSourceUrl>
+    <packageSourceUrl>https://github.com/admiringworm/chocolatey-packages/tree/master/automatic/qtcreator</packageSourceUrl>
+    <docsUrl>https://doc.qt.io/qtcreator/</docsUrl>
+    <mailingListUrl>http://lists.qt-project.org/mailman/listinfo/qt-creator/</mailingListUrl>
+    <bugTrackerUrl>https://bugreports.qt.io/browse/QTCREATORBUG</bugTrackerUrl>
+    <dependencies>
+      <dependency id="vcredist2017" version="14.16.27027.20190415" />
+    </dependencies>
+  </metadata>
+</package>
