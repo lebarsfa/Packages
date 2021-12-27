@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>ChocolateStore</id>
+    <version>1.0.1</version>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/ChocolateStore</packageSourceUrl>
+    <owners>lebarsfa</owners>
+    <title>ChocolateStore</title>
+    <authors>sr258, BahKoo, laggingreflex, AndreAugustoAAQ, jdasilva</authors>
+    <projectUrl>https://github.com/sr258/ChocolateStore</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/sr258/ChocolateStore</projectSourceUrl>
+    <docsUrl>https://github.com/sr258/ChocolateStore</docsUrl>
+    <tags>internalize</tags>
+    <summary>ChocolateStore is a free and open source software that allows caching of Chocolatey packages for easy offline installation.</summary>
+    <description>
+ChocolateStore is a free and open source software that allows caching of Chocolatey packages for easy offline installation.
+    </description>
+    <releaseNotes>https://github.com/sr258/ChocolateStore/commits/master</releaseNotes>
+    <dependencies>
+      <dependency id="dotnetfx" />
+    </dependencies>
+  </metadata>
+</package>
