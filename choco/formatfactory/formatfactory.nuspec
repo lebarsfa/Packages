@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>formatfactory</id>
+    <version>4.10.5.0</version>
+    <title>Format Factory</title>
+    <authors>Free Time</authors>
+    <owners>Firewauker</owners>
+    <projectUrl>http://www.pcfreetime.com/</projectUrl>
+    <iconUrl>https://upload.wikimedia.org/wikipedia/en/1/16/FormatFactory.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FormatFactory is an ad-supported freeware multimedia converter that can convert video, audio, and picture files. It is also capable of ripping DVDs and CDs to other file formats, as well as creating .iso images. It can also join multiple video files together into one.</description>
+    <summary>FormatFactory is an ad-supported freeware multimedia converter that can convert video, audio, and picture files. It is also capable of ripping DVDs and CDs to other file formats, as well as creating .iso images. It can also join multiple video files together into one.</summary>
+    <tags>formatfactory format factory file converter video audio admin</tags>
+  </metadata>
+</package>
