@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>aqt</id>
+    <version>2.0.5</version>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/aqt</packageSourceUrl>
+    <owners>lebarsfa</owners>
+    <title>Another Qt installer (aqt)</title>
+    <authors>Hiroshi Miura</authors>
+    <projectUrl>https://github.com/miurahr/aqtinstall</projectUrl>
+    <licenseUrl>https://github.com/miurahr/aqtinstall/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/miurahr/aqtinstall</projectSourceUrl>
+    <docsUrl>https://aqtinstall.readthedocs.io/en/latest/</docsUrl>
+    <tags>Qt SDK programming library C++ CPP</tags>
+    <summary>aqt: Another (unofficial) Qt CLI Installer on multi-platforms.</summary>
+    <description>
+This is a utility alternative to the official graphical Qt installer, for using in CI environment where an interactive UI is not usable, or just on command line.
+    </description>
+    <releaseNotes>https://aqtinstall.readthedocs.io/en/latest/changes.html</releaseNotes>
+    <dependencies>
+      <dependency id="vcredist140" />
+    </dependencies>
+  </metadata>
+</package>
