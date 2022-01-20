@@ -11,7 +11,7 @@ $packageArgs = @{
   fileType      = 'EXE'
   url           = $url
   softwareName  = 'formatfactory*'
-  checksum      = 'C135ED6D5A787840884E0D2E63A9DC8512D854AF0D3442DBE1EAF0EB015044D6'
+  checksum      = '32a1b3a2d5bd7ccc39ad753f990eb17b1fa3cdf31c194caff46c1965c75bf0a8'
   checksumType  = 'sha256'
   silentArgs   = '/S'
 }
