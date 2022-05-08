@@ -16,6 +16,9 @@
     <summary>aqt: Another (unofficial) Qt CLI Installer on multi-platforms.</summary>
     <description>
 This is a utility alternative to the official graphical Qt installer, for using in CI environment where an interactive UI is not usable, or just on command line.
+
+## Troubleshooting
+- False positive may occur with some antivirus software, see https://github.com/miurahr/aqtinstall/issues/423.
     </description>
     <releaseNotes>https://aqtinstall.readthedocs.io/en/latest/changes.html</releaseNotes>
     <dependencies>

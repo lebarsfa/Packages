@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'; # stop on all errors
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = "https://github.com/miurahr/aqtinstall/releases/download/v$env:ChocolateyPackageVersion/aqt_x86.exe"
-$url64      = "https://github.com/miurahr/aqtinstall/releases/download/v$env:ChocolateyPackageVersion/aqt_x64.exe"
+$url        = 'https://github.com/miurahr/aqtinstall/releases/download/v2.0.6/aqt_x86.exe'
+$url64      = 'https://github.com/miurahr/aqtinstall/releases/download/v2.0.6/aqt_x64.exe'
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
