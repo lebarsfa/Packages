@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>aqt</id>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/aqt</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Another Qt installer (aqt)</title>
@@ -19,7 +19,7 @@ This is a utility alternative to the official graphical Qt installer, for using 
     </description>
     <releaseNotes>https://aqtinstall.readthedocs.io/en/latest/changes.html</releaseNotes>
     <dependencies>
-      <dependency id="vcredist140" />
+      <dependency id="vcredist140" version="14.24.28127.4" />
     </dependencies>
   </metadata>
 </package>
