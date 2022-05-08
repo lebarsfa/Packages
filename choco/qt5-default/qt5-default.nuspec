@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>qt5-default</id>
-    <version>5.15.2.20211228</version>
+    <version>5.15.2.20220508</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/qt5-default</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Qt 5 SDK</title>
@@ -19,7 +19,7 @@
 Qt 5 development defaults package.
 
 ## Quick start
-- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y qt5-default qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
+- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y qt5-default cmake qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
 
 ## Troubleshooting
 - Check that all the packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using --force or try a previous version...
@@ -34,8 +34,7 @@ To pass parameters, use `--params "''"` (e.g. `choco install qt5-default --param
     <releaseNotes>https://wiki.qt.io/Template:Release_Information</releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="7zip" version="18.5.0.20180730" />
-      <dependency id="python" version="3.6" />
+      <dependency id="aqt" version="2.0.6" />
       <dependency id="mingw" version="[8.1.0]" />
     </dependencies>
   </metadata>
