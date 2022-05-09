@@ -10,16 +10,15 @@ else {
 	$Modules = $pp['modules']
 }
 
-# Need to use aqt install-qt instead of aqt install with future versions of aqt...? Better to keep aqt install as long as possible due to potentially existing aqt versions that might not be overwritten (e.g. due to PATH priorities, etc.)...
 if (!$pp['base']) { 
-	cmd /c "refreshenv & cd $env:TEMP & aqt install --outputdir $QtSDKRoot $QtSDKVer windows desktop win$MinGWArch`_mingw$MinGWMMVer -m $Modules" 
+	cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe install-qt --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw$MinGWMMVer -m $Modules" 
 }
 else { 
 	$Base = $pp['base']
 	# For offline install...
 	# Before, set up qt5-default-5.15.2\online\qtsdkrepository\windows_x86\desktop\qt5_5152 folder with data from e.g. ftp://mirrors.dotsrc.org/.mirrors/qtproject/online/qtsdkrepository/windows_x86/desktop/qt5_5152 from a computer with the Internet.
 	# On the computer to be installed and to be able to use the --base parameter of aqt install, which does not seem to accept directly local folders (firewall might need to be configured to temporarily allow TCP port 8000, e.g. netsh advfirewall firewall add rule name="Open Port 8000 TCP" dir=in action=allow protocol=TCP localport=8000) : start python -m http.server --directory qt5-default-5.15.2
-	cmd /c "refreshenv & cd $env:TEMP & aqt install --base $Base --outputdir $QtSDKRoot $QtSDKVer windows desktop win$MinGWArch`_mingw$MinGWMMVer -m $Modules"
+	cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe install-qt --base $Base --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw$MinGWMMVer -m $Modules"
 }
 
 $QtVersionFileContent = @" 
