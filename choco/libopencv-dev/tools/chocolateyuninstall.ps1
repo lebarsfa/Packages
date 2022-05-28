@@ -8,7 +8,7 @@ if (Test-Path "C:\OpenCV$OpenCVVer") {
 }
 
 if (Test-Path $CMakeRegistryPath) {
-  if (Test-Path $CMakeSystemRepositoryPath) {
+  if (Test-Path $CMakeSystemRepositoryPath\$CMakePackageName) {
       Remove-Item "$CMakeSystemRepositoryPath\$CMakePackageName"
   }
 }
