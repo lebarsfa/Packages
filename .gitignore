@@ -1,3 +1,4 @@
+choco/mavlink/include
 **/*.pyc
 **/__pycache__/
 **/*.nupkg

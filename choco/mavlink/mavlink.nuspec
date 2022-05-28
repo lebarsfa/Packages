@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>mavlink</id>
+    <version>1.0.0.20200808</version>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/mavlink</packageSourceUrl>
+    <owners>lebarsfa</owners>
+    <title>MAVLink</title>
+    <authors>Lorenz Meier, PIXHAWK Team</authors>
+    <projectUrl>https://mavlink.io/en/</projectUrl>
+    <iconUrl>https://cdn.statically.io/gh/lebarsfa/Packages/0125708/choco/icons/mavlink.png</iconUrl>
+    <licenseUrl>https://mavlink.io/en/#license</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/mavlink/c_library_v1</projectSourceUrl>
+    <tags>mavlink programming library C C++ CPP</tags>
+    <summary>MAVLink protocol C/C++ implementation.</summary>
+    <description>
+MAVLink is a binary telemetry protocol designed for resource-constrained systems and bandwidth-constrained links.
+    </description>
+  </metadata>
+</package>
