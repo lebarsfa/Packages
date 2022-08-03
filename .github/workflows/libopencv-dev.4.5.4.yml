@@ -1,0 +1,120 @@
+on:
+    push:
+        branches: 'libopencv-dev.4.5.4'
+        tags: '' # Restrict to blank tags
+    pull_request:
+
+jobs:
+ vcmatrix:
+    runs-on: ${{ matrix.cfg.os }}
+    defaults:
+        run:
+            shell: cmd
+    continue-on-error: true
+    strategy:
+        matrix:
+            cfg:
+            - { os: windows-2022, arch: x64, runtime: vc17, shared: 'ON', cmake_params: '-G "Visual Studio 17" -T v143 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2022 x64' }
+            - { os: windows-2022, arch: x64, runtime: vc17, shared: 'ON', cmake_params: '-G "Visual Studio 17" -T v143 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2022 x64 Debug' }
+            - { os: windows-2022, arch: x64, runtime: vc17, shared: 'OFF', cmake_params: '-G "Visual Studio 17" -T v143 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2022 x64 static' }
+            - { os: windows-2022, arch: x64, runtime: vc17, shared: 'OFF', cmake_params: '-G "Visual Studio 17" -T v143 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2022 x64 static Debug' }
+            - { os: windows-2022, arch: x86, runtime: vc17, shared: 'ON', cmake_params: '-G "Visual Studio 17" -T v143 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2022 x86' }
+            - { os: windows-2022, arch: x86, runtime: vc17, shared: 'ON', cmake_params: '-G "Visual Studio 17" -T v143 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2022 x86 Debug' }
+            - { os: windows-2022, arch: x86, runtime: vc17, shared: 'OFF', cmake_params: '-G "Visual Studio 17" -T v143 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2022 x86 static' }
+            - { os: windows-2022, arch: x86, runtime: vc17, shared: 'OFF', cmake_params: '-G "Visual Studio 17" -T v143 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2022 x86 static Debug' }
+            - { os: windows-2019, arch: x64, runtime: vc16, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v142 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2019 x64' }
+            - { os: windows-2019, arch: x64, runtime: vc16, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v142 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2019 x64 Debug' }
+            - { os: windows-2019, arch: x64, runtime: vc16, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v142 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2019 x64 static' }
+            - { os: windows-2019, arch: x64, runtime: vc16, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v142 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2019 x64 static Debug' }
+            - { os: windows-2019, arch: x86, runtime: vc16, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v142 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2019 x86' }
+            - { os: windows-2019, arch: x86, runtime: vc16, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v142 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2019 x86 Debug' }
+            - { os: windows-2019, arch: x86, runtime: vc16, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v142 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2019 x86 static' }
+            - { os: windows-2019, arch: x86, runtime: vc16, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v142 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2019 x86 static Debug' }
+            - { os: windows-2019, arch: x64, runtime: vc15, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v141 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2017 x64' }
+            - { os: windows-2019, arch: x64, runtime: vc15, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v141 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2017 x64 Debug' }
+            - { os: windows-2019, arch: x64, runtime: vc15, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v141 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2017 x64 static' }
+            - { os: windows-2019, arch: x64, runtime: vc15, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v141 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2017 x64 static Debug' }
+            - { os: windows-2019, arch: x86, runtime: vc15, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v141 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2017 x86' }
+            - { os: windows-2019, arch: x86, runtime: vc15, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v141 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2017 x86 Debug' }
+            - { os: windows-2019, arch: x86, runtime: vc15, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v141 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2017 x86 static' }
+            - { os: windows-2019, arch: x86, runtime: vc15, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v141 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2017 x86 static Debug' }
+            - { os: windows-2019, arch: x64, runtime: vc14, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v140 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2015 x64' }
+            - { os: windows-2019, arch: x64, runtime: vc14, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v140 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2015 x64 Debug' }
+            - { os: windows-2019, arch: x64, runtime: vc14, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v140 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2015 x64 static' }
+            - { os: windows-2019, arch: x64, runtime: vc14, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v140 -A x64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2015 x64 static Debug' }
+            - { os: windows-2019, arch: x86, runtime: vc14, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v140 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2015 x86' }
+            - { os: windows-2019, arch: x86, runtime: vc14, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v140 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2015 x86 Debug' }
+            - { os: windows-2019, arch: x86, runtime: vc14, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v140 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2015 x86 static' }
+            - { os: windows-2019, arch: x86, runtime: vc14, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v140 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2015 x86 static Debug' }
+            - { os: windows-2022, arch: x64, runtime: mingw11, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 11.2.0 x64' }
+            - { os: windows-2022, arch: x64, runtime: mingw11, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 11.2.0 x64 static' }
+            - { os: windows-2022, arch: x86, runtime: mingw11, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 11.2.0 x86' }
+            - { os: windows-2022, arch: x86, runtime: mingw11, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 11.2.0 x86 static' }
+            - { os: windows-2019, arch: x64, runtime: mingw8, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 8.1.0 x64' }
+            - { os: windows-2019, arch: x64, runtime: mingw8, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 8.1.0 x64 static' }
+            - { os: windows-2019, arch: x86, runtime: mingw8, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 8.1.0 x86' }
+            - { os: windows-2019, arch: x86, runtime: mingw8, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 8.1.0 x86 static' }
+            - { os: windows-2019, arch: x64, runtime: mingw7, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 7.3.0 x64' }
+            - { os: windows-2019, arch: x64, runtime: mingw7, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 7.3.0 x64 static' }
+            - { os: windows-2019, arch: x86, runtime: mingw7, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 7.3.0 x86' }
+            - { os: windows-2019, arch: x86, runtime: mingw7, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 7.3.0 x86 static' }
+    name: ${{ matrix.cfg.desc }}
+    steps: 
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+        fetch-depth: 0
+        clean: false
+    - run: |
+        rem choco install -y -r --no-progress 7zip git cmake make nsis
+        choco install -y -r --no-progress wget unzip patch checksum
+        powershell -Command "Install-WindowsFeature Server-Media-Foundation"
+        wget http://www.ensta-bretagne.fr/lebars/Share/windows_server_core_prereq.zip --no-check-certificate -nv
+        7z x windows_server_core_prereq.zip -o"%SystemRoot%" -y & cd. & rem ksuser.dll already on windows-2016...?
+    - run: |
+        choco install -y -r --no-progress mingw --version=7.3.0 --force ${{ matrix.cfg.choco_flags }}
+        echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
+      if: (matrix.cfg.runtime=='mingw7')
+    - run: |
+        choco install -y -r --no-progress mingw --version=8.1.0 --force ${{ matrix.cfg.choco_flags }}
+        echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
+      if: (matrix.cfg.runtime=='mingw8')&&(matrix.cfg.arch=='x86')
+    - run: |
+        choco install -y -r --no-progress mingw --version=11.2.0 --force ${{ matrix.cfg.choco_flags }}
+        echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
+      if: (matrix.cfg.runtime=='mingw10')&&(matrix.cfg.arch=='x86')
+    - run: |
+        git clone -b 4.5.4 https://github.com/opencv/opencv.git
+        git clone -b 4.5.4 https://github.com/opencv/opencv_contrib.git
+      shell: bash
+    - run: patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
+      shell: bash
+      if: startsWith(matrix.cfg.runtime, 'mingw')
+    - run: |
+        mkdir build
+        cd build
+        export _RUNTIME=${{ matrix.cfg.runtime }}
+        cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=ON -D BUILD_opencv_python3=OFF -D BUILD_SHARED_LIBS=${{ matrix.cfg.shared }} -D BUILD_WITH_DEBUG_INFO=OFF -D BUILD_DOCS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_TESTS=OFF -D BUILD_opencv_world=${{ matrix.cfg.shared }} -D WITH_CUDA=OFF ../opencv
+        cmake --build . --config ${{ matrix.cfg.cmake_config }} --target package
+        if [[ ${{ matrix.cfg.shared }} = OFF ]]; then export _STATIC=static ; else unset _STATIC ; fi
+        mv *.exe ../libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe
+        cd ../choco/libopencv-dev
+        choco pack
+        choco install -y --ignore-dependencies --ignore-checksum -s . libopencv-dev --params "'/url:../../libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
+        cd tools/cv_mat_test
+        if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
+        cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true
+        cmake --build . --config ${{ matrix.cfg.cmake_config }}
+        export PATH=$PATH:/C/OpenCV4.5.4/${{ matrix.cfg.arch }}/${_RUNTIME:0:5}/bin
+        ./${{ matrix.cfg.test_config }}cv_mat_test
+        cd ../../../..
+        checksum -f=libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe -t=sha256
+      shell: bash
+    - uses: xresloader/upload-to-github-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        file: "*.exe"
+        overwrite: true
+        tag_name: autotagname-${{ github.sha }}
+      if: (github.event_name != 'pull_request')&&(github.ref_name == 'libopencv-dev.4.5.4')
