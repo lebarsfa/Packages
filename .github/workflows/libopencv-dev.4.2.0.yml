@@ -10,8 +10,8 @@ jobs:
     defaults:
         run:
             shell: cmd
-    continue-on-error: true
     strategy:
+        fail-fast: false
         matrix:
             cfg:
             - { os: windows-2022, arch: x64, runtime: vc17, shared: 'ON', cmake_params: '-G "Visual Studio 17" -T v143 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2022 x64' }
@@ -96,11 +96,13 @@ jobs:
         cd ../choco/libopencv-dev
         choco pack
         choco install -y --ignore-dependencies --ignore-checksum -s . libopencv-dev --params "'/url:../../libopencv-dev.4.2.0_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
+        wget https://gist.github.com/lebarsfa/237841f9e5dad55ef192713b3b1b2f16/raw/f1dd5f8ef30f85f9f6a3550d8d7e90abebca274b/refreshenv.bashrc --no-check-certificate -nv
+        source ./refreshenv.bashrc
+        refreshenv
         cd tools/cv_mat_test
         if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
         cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true 
         cmake --build . --config ${{ matrix.cfg.cmake_config }}
-        export PATH=$PATH:/C/OpenCV4.2.0/${{ matrix.cfg.arch }}/${_RUNTIME:0:5}/bin
         ./${{ matrix.cfg.test_config }}cv_mat_test
         cd ../../../..
         checksum -f=libopencv-dev.4.2.0_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe -t=sha256
