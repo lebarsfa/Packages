@@ -10,8 +10,8 @@ jobs:
     defaults:
         run:
             shell: cmd
-    continue-on-error: true
     strategy:
+        fail-fast: false
         matrix:
             cfg:
             - { os: windows-2022, arch: x64, runtime: vc17, shared: 'ON', cmake_params: '-G "Visual Studio 17" -T v143 -A x64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2022 x64' }
