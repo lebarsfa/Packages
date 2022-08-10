@@ -17,9 +17,9 @@ New-Item -ItemType Directory -Force -Path $root | Out-Null
 
 if (!$pp['url']) { 
 	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x86_mingw8_staticlib_Release.exe'
-	$checksum = 'A89C89541167BFC6CF3A10FF007E846E96E8A5FB0000F76A11A3EACF9EE37009'
+	$checksum = '16BAF166223F2AD93AD073DB9D3653F243F381D6C1E17888A3B1BD210EA754C9'
 	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x64_mingw8_staticlib_Release.exe'
-	$checksum64 = '4AD4C99DABD41FD44B53A837944F95A660A0AA9F08C009FFD656EC0AC32DF0CA'
+	$checksum64 = '356AA8E6A3472A58B4EAA0A4C638300DB91CFCE4254C5A46C538AE38516C6280'
 	if ($pp['32and64']) {
 		$packageArgs = @{
 			packageName   = $env:ChocolateyPackageName
@@ -54,9 +54,9 @@ if (!$pp['url']) {
 	}
 
 	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x86_mingw8_lib_Release.exe'
-	$checksum = '497221EC74D4D6CC191E75C5E85BCA318C18542824F3BEBE56B17D0AA00E8CC1'
+	$checksum = '5A1A4C02998B1487F8E9963F9F182A5E1ABD2486989ADE79269E9E57B39CCAE9'
 	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x64_mingw8_lib_Release.exe'
-	$checksum64 = 'D928BDA6BE0C5EF3B8D1C8470783F2F6DC9884C95E4F64D5DF0B0D87552D31FB'
+	$checksum64 = '2444DE6854DB6C81B07B2CB6E1086A414A3B7C672F995CBC8E5B953DA5668C47'
 	if ($pp['32and64']) {
 		$packageArgs = @{
 			packageName   = $env:ChocolateyPackageName
