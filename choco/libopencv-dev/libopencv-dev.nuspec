@@ -5,7 +5,7 @@
     <version>4.5.4</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.4.5.4/choco/libopencv-dev</packageSourceUrl>
     <owners>lebarsfa</owners>
-    <title>OpenCV</title>
+    <title>Development files for OpenCV</title>
     <authors>OpenCV team</authors>
     <projectUrl>http://opencv.org/</projectUrl>
     <iconUrl>https://cdn.statically.io/gh/lebarsfa/Packages/a637a2f/choco/icons/opencv.png</iconUrl>
@@ -18,6 +18,9 @@
     <description>
 OpenCV development defaults package.
 
+## Package info
+- The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/focal/libopencv-dev. The MinGW/GCC version is chosen as the current one available on GitHub Actions. Note that the existing https://community.chocolatey.org/packages/OpenCV official package does not provide binaries for MinGW/GCC.
+
 ## Quick start
 - After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y libopencv-dev cmake.install --installargs 'ADD_CMAKE_TO_PATH=System'` in PowerShell, reboot and then get the folder from https://www.ensta-bretagne.fr/lebars/Share/ImageOpenCV454_Ubuntu22.04.zip and inside, try `cmake -G "MinGW Makefiles" .`, `cmake --build .`, `.\ImageOpenCV.exe` in a new PowerShell window and check that an image appears in a window.
 
@@ -26,18 +29,17 @@ OpenCV development defaults package.
 
 ## Package parameters
 The following package parameters can be set:
-- `/url:URL` - Will install the specified self-extracting OpenCV package, see e.g. versions from https://github.com/lebarsfa/Packages/releases (the `/sha256:CHECKSUM` parameter will need also to be specified unless standard parameter `choco install --ignore-checksum ...` is used, the Windows `PATH` might need to be updated manually with e.g. `C:\OpenCV4.5.4\x86\vc15\bin`, you might need to set manually CMake variables `OpenCV_ARCH` e.g. to `x86`, `OpenCV_RUNTIME` e.g. to `vc15`, `OpenCV_STATIC` e.g. to `ON`, rename folders e.g. from `C:\OpenCV4.5.4\x86\mingw` to `C:\OpenCV4.5.4\x86\mingw7`, etc.). By default, only the MinGW libraries compatible with the corresponding MinGW Chocolatey package dependency are installed. Use standard parameter `choco install --ignore-dependencies ...` to avoid installing MinGW Chocolatey package dependency if needed.
-- `/sha256:CHECKSUM` - sha256 checksum of the file in the URL (e.g. `choco install -y checksum`, then run `checksum -f=libopencv-dev.4.5.4_x86_vc15_lib_Debug.exe -t=sha256`).
+- `/url:URL` - Will install the specified self-extracting OpenCV package, see e.g. versions from https://github.com/lebarsfa/Packages/releases (the Windows `PATH` might need to be updated manually with e.g. `C:\OpenCV4.5.4\x86\vc15\bin`, you might need to set manually CMake variables `OpenCV_ARCH` e.g. to `x86`, `OpenCV_RUNTIME` e.g. to `vc15`, `OpenCV_STATIC` e.g. to `ON`, rename folders e.g. from `C:\OpenCV4.5.4\x86\mingw` to `C:\OpenCV4.5.4\x86\mingw7`, etc.). By default, only the MinGW libraries compatible with the corresponding MinGW Chocolatey package dependency are installed. Use the standard parameter `choco install --ignore-dependencies ...` to avoid installing MinGW Chocolatey package dependency if needed.
 - `/NoPath` - Will not try to update Windows PATH.
 - `/NoRegistry` - Will not try to update Windows registry.
 - `/32and64` - Will install both 32 and 64 bit versions of the default MinGW libraries.
 To pass package parameters, use `--params "''"` (e.g. `choco install libopencv-dev --params "'/NoPath /32and64'"`), and use standard parameters `choco install -m -f ...` to install multiple self-extracting OpenCV packages together (if they are not mutually exclusive due to other reasons), e.g.
 ```
 choco install -y chocolatey-core.extension
-choco install -y -m -f --ignore-dependencies --ignore-checksum libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Debug.exe'"
-choco install -y -m -f --ignore-dependencies --ignore-checksum libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Debug.exe'"
-choco install -y -m -f --ignore-dependencies --ignore-checksum libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Release.exe'"
-choco install -y -m -f --ignore-dependencies --ignore-checksum libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Release.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Debug.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Debug.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Release.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Release.exe'"
 ```
     </description>
     <releaseNotes>https://github.com/opencv/opencv/wiki/ChangeLog</releaseNotes>

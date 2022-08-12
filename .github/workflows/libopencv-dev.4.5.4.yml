@@ -84,8 +84,8 @@ jobs:
         echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
       if: (matrix.cfg.runtime=='mingw11')&&(matrix.cfg.arch=='x86')
     - run: |
-        git clone -b 4.5.4 https://github.com/opencv/opencv.git
-        git clone -b 4.5.4 https://github.com/opencv/opencv_contrib.git
+        git clone --depth 1 -b 4.5.4 https://github.com/opencv/opencv.git
+        git clone --depth 1 -b 4.5.4 https://github.com/opencv/opencv_contrib.git
         patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
         mkdir build
         cd build
@@ -96,7 +96,7 @@ jobs:
         mv *.exe ../libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe
         cd ../choco/libopencv-dev
         choco pack
-        choco install -y --ignore-dependencies --ignore-checksum -s . libopencv-dev --params "'/url:../../libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
+        choco install -y -r --no-progress --ignore-dependencies -s . libopencv-dev --params "'/url:../../libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
         cd tools/cv_mat_test
         if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
         cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true
