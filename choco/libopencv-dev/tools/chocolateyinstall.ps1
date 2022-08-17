@@ -95,13 +95,13 @@ if (!$pp['url']) {
 else
 {
 	$url = $pp['url']
-	$checksum = $pp['sha256']
+	#$checksum = $pp['sha256']
 	$packageArgs = @{
 		packageName   = $env:ChocolateyPackageName
 		unzipLocation = "$root"
 		url           = $url
-		checksum      = $checksum
-		checksumType  = 'sha256'
+		#checksum      = $checksum
+		#checksumType  = 'sha256'
 	}
 	Install-ChocolateyZipPackage @packageArgs
 
