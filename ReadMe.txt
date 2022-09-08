@@ -1,1 +1,1 @@
-See also https://www.ensta-bretagne.fr/packages/
+See also https://packages.ensta-bretagne.fr/
