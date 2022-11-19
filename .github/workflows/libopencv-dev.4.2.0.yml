@@ -94,16 +94,17 @@ jobs:
         if [[ ${{ matrix.cfg.shared }} = OFF ]]; then export _STATIC=static ; else unset _STATIC ; fi
         mv *.exe ../libopencv-dev.4.2.0_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe
         cd ../choco/libopencv-dev
+        mv tools/cv_mat_test ..
         choco pack
         choco install -y --ignore-dependencies --ignore-checksum -s . libopencv-dev --params "'/url:../../libopencv-dev.4.2.0_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
-        cd tools/cv_mat_test
+        cd ../cv_mat_test
         if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
         cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true 
         cmake --build . --config ${{ matrix.cfg.cmake_config }}
         export PATH=$PATH:/C/OpenCV4.2.0/${{ matrix.cfg.arch }}/${_RUNTIME:0:5}/bin
         file ./${{ matrix.cfg.test_config }}cv_mat_test
         ./${{ matrix.cfg.test_config }}cv_mat_test
-        cd ../../../..
+        cd ../..
         checksum -f=libopencv-dev.4.2.0_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe -t=sha256
       shell: bash
     - uses: xresloader/upload-to-github-release@v1
