@@ -60,7 +60,7 @@ jobs:
             - { os: windows-2019, arch: x86, runtime: mingw7, shared: 'OFF', cmake_params: '-G "MinGW Makefiles" -D WITH_MSMF=OFF -D ENABLE_CXX11=ON -D WITH_OPENCL_D3D11_NV=OFF', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 7.3.0 x86 static' }
     name: ${{ matrix.cfg.desc }}
     steps: 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         submodules: true
         fetch-depth: 0
@@ -84,8 +84,8 @@ jobs:
         echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
       if: (matrix.cfg.runtime=='mingw11')&&(matrix.cfg.arch=='x86')
     - run: |
-        git clone -b 4.2.0 https://github.com/opencv/opencv.git
-        git clone -b 4.2.0 https://github.com/opencv/opencv_contrib.git
+        git clone --depth 1 -b 4.2.0 https://github.com/opencv/opencv.git
+        git clone --depth 1 -b 4.2.0 https://github.com/opencv/opencv_contrib.git
         mkdir build
         cd build
         export _RUNTIME=${{ matrix.cfg.runtime }}
@@ -96,7 +96,7 @@ jobs:
         cd ../choco/libopencv-dev
         mv tools/cv_mat_test ..
         choco pack
-        choco install -y --ignore-dependencies --ignore-checksum -s . libopencv-dev --params "'/url:../../libopencv-dev.4.2.0_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
+        choco install -y -r --no-progress --ignore-dependencies -s . libopencv-dev --params "'/url:../../libopencv-dev.4.2.0_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
         cd ../cv_mat_test
         if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
         cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true 
