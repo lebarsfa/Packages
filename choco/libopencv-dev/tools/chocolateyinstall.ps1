@@ -6,10 +6,10 @@
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
 $pp = Get-PackageParameters
-$installDir = "C:"
-# How to uninstall from custom location...?
-#$installDir = Get-ToolsLocation
-#if ($pp.InstallDir -or $pp.InstallationPath) { $InstallDir = $pp.InstallDir + $pp.InstallationPath }
+$installDir = $env:SystemDrive
+if ($pp.InstallDir -or $pp.InstallationPath) { 
+	$InstallDir = $pp.InstallDir + $pp.InstallationPath 
+}
 Write-Host "OpenCV$OpenCVVer is going to be installed in '$installDir'"
 
 $root = Join-Path "$installDir" "OpenCV$OpenCVVer"
@@ -38,8 +38,7 @@ if (!$pp['url']) {
 		}
 		Install-ChocolateyZipPackage @packageArgs
 	}
-	else
-	{
+	else {
 		$packageArgs = @{
 			packageName   = $env:ChocolateyPackageName
 			unzipLocation = "$root"
@@ -75,8 +74,7 @@ if (!$pp['url']) {
 		}
 		Install-ChocolateyZipPackage @packageArgs
 	}
-	else
-	{
+	else {
 		$packageArgs = @{
 			packageName   = $env:ChocolateyPackageName
 			unzipLocation = "$root"
@@ -92,8 +90,7 @@ if (!$pp['url']) {
 
 	$runtime = "mingw"
 }
-else
-{
+else {
 	$url = $pp['url']
 	#$checksum = $pp['sha256']
 	$packageArgs = @{
@@ -149,9 +146,9 @@ else
 
 if (!$pp['NoRegistry']) {
 	New-Item "$CMakeSystemRepositoryPath\$CMakePackageName" -ItemType directory -Force
-	New-ItemProperty -Name "CMakePackageDir" -PropertyType String -Value "$installDir\OpenCV$OpenCVVer" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
+	New-ItemProperty -Name "CMakePackageDir" -PropertyType String -Value "$root" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
 }
-$pathtoadd = "$installDir\OpenCV$OpenCVVer\$arch\$runtime\bin"
+$pathtoadd = "$root\$arch\$runtime\bin"
 if (!($pp['NoPath']) -and !([environment]::GetEnvironmentVariable("Path","Machine") -match [regex]::escape($pathtoadd))) {
 	$newpath = [environment]::GetEnvironmentVariable("Path","Machine") + ";$pathtoadd"
 	[environment]::SetEnvironmentVariable("Path",$newpath,"Machine")
