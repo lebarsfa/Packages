@@ -153,3 +153,14 @@ if (!($pp['NoPath']) -and !([environment]::GetEnvironmentVariable("Path","Machin
 	$newpath = [environment]::GetEnvironmentVariable("Path","Machine") + ";$pathtoadd"
 	[environment]::SetEnvironmentVariable("Path",$newpath,"Machine")
 }
+# Temporary workaround: MinGW 11.2.0 package seems to have a bug where a necessary path is not added to Windows PATH...
+if ($arch -match "x86") {
+	$mingwpathfix = "C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin"
+}
+else {
+	$mingwpathfix = "C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin"
+}
+if ((Test-Path $mingwpathfix) -and !($pp['NoPath']) -and !([environment]::GetEnvironmentVariable("Path","Machine") -match [regex]::escape($mingwpathfix))) {
+	$newpath = [environment]::GetEnvironmentVariable("Path","Machine") + ";$mingwpathfix"
+	[environment]::SetEnvironmentVariable("Path",$newpath,"Machine")
+}
