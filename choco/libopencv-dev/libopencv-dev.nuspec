@@ -46,7 +46,7 @@ choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https
     <releaseNotes>https://github.com/opencv/opencv/wiki/ChangeLog</releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="mingw" version="[11.2.0]" />
+      <dependency id="mingw" version="[11.2.0.07112021]" />
     </dependencies>
   </metadata>
 </package>
