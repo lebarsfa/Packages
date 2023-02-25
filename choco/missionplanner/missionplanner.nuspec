@@ -13,7 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/ArduPilot/MissionPlanner</projectSourceUrl>
     <docsUrl>http://ardupilot.org/planner/</docsUrl>
-    <tags>missionplanner ardupilot arducopter ardurover arduplane ardusub arduheli apmrover2 antennatracker pixhawk apm ArduPilotMega</tags>
+    <tags>missionplanner MAVLink ardupilot arducopter ardurover arduplane ardusub arduheli apmrover2 antennatracker pixhawk apm ArduPilotMega</tags>
     <summary>Mission Planner is a full-featured ground station application for the ArduPilot open source autopilot project.</summary>
     <description>
 Mission Planner is a ground control station for Plane, Copter and Rover. Mission Planner can be used as a configuration utility or as a dynamic control supplement for your autonomous vehicle. Here are just a few things you can do with Mission Planner:
@@ -31,13 +31,17 @@ Mission Planner is a ground control station for Plane, Copter and Rover. Mission
 ## Troubleshooting
 - Check that all the packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using --force or try a previous version...
 - You might need to install manually the drivers for your hardware, see https://firmware.ardupilot.org/Tools/MissionPlanner/driver.msi and/or https://firmware.ardupilot.org/Tools/WindowsDrivers.zip.
+
+## Package parameters
+The following package parameters can be set:
+- `/InstallDir:INSTALLDIR` - Installation directory.
+To pass package parameters, use `--params "''"` (e.g. `choco install missionplanner --params "'/InstallDir:C:\apps'"`)
     </description>
     <releaseNotes>https://github.com/ArduPilot/MissionPlanner/blob/master/ChangeLog.txt</releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="dotnet3.5" version="3.5" />
       <dependency id="dotnet4.6.1" version="4.6.01055.00" />
-      <dependency id="vcredist140" version="14.24.28127.4" />
+      <dependency id="vcredist140" version="14.30.30704" />
     </dependencies>
   </metadata>
 </package>

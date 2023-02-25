@@ -1,28 +1,32 @@
 ﻿$ErrorActionPreference = 'Stop'
 
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$fileLocation = Get-Item $toolsDir\*.zip
 
 $pp = Get-PackageParameters
-$installDir = $toolsDir
-# How to uninstall from custom location...?
-#$installDir = Get-ToolsLocation
-#if ($pp.InstallDir -or $pp.InstallationPath) { $InstallDir = $pp.InstallDir + $pp.InstallationPath }
-Write-Host "Mission Planner is going to be installed in '$installDir\$env:ChocolateyPackageName'"
-
-$packageArgs = @{
-  packageName   = $env:ChocolateyPackageName
-  unzipLocation = "$installDir\$env:ChocolateyPackageName"
-  file          = $fileLocation
+# To match .msi (which cannot be easily automated due to prompts related to drivers) default install location
+if ((Get-ProcessorBits 32) -or $env:ChocolateyForceX86 -eq $true) { $installDir = ${env:ProgramFiles} } else { $installDir = ${env:ProgramFiles(x86)} }
+if ($pp.InstallDir -or $pp.InstallationPath) { 
+	$installDir = $pp.InstallDir + $pp.InstallationPath 
 }
+Write-Host "Mission Planner is going to be installed in '$installDir'"
 
+$root = Join-Path $installDir "Mission Planner"
+New-Item -ItemType Directory -Force -Path $root | Out-Null
+
+$url = 'http://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-1.3.79.zip'
+$checksum = 'F7C20B87B2046BC3AEB1D1050CDBCB1BDC79F1A38D6CE7392CCFB545E21E94D3'
+$packageArgs = @{
+	packageName   = $env:ChocolateyPackageName
+	unzipLocation = "$root"
+	url           = $url
+	checksum      = $checksum
+	checksumType  = 'sha256'
+}
 Install-ChocolateyZipPackage @packageArgs
-
-Remove-Item $toolsDir\*.zip -ea 0 -force
 
 $MissionPlanner = $null
 
-Get-ChildItem "$installDir\$env:ChocolateyPackageName" -Include "*.exe" -Recurse | ForEach-Object {
+Get-ChildItem $root -Include "*.exe" -Recurse | ForEach-Object {
   if ($_.Name -eq "MissionPlanner.exe") {
     Set-Content -Value "" -LiteralPath "$($_.FullName).gui"
     $MissionPlanner = $_.FullName
@@ -32,7 +36,7 @@ Get-ChildItem "$installDir\$env:ChocolateyPackageName" -Include "*.exe" -Recurse
   }
 }
 
-Install-BinFile -UseStart -Name 'MissionPlanner' -Path "$installDir\$env:ChocolateyPackageName\MissionPlanner.exe"
+Install-BinFile -UseStart -Name 'MissionPlanner' -Path "$root\MissionPlanner.exe"
 
 if ($MissionPlanner) {
   # Because chocolatey targets 4.0, we are able to use 'Programs' in the 'GetFolderPath'
