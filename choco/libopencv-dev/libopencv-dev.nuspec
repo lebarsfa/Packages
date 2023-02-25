@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>libopencv-dev</id>
-    <version>4.2.0</version>
-    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.4.2.0/choco/libopencv-dev</packageSourceUrl>
+    <version>4.5.4</version>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.4.5.4/choco/libopencv-dev</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Development files for OpenCV</title>
     <authors>OpenCV team</authors>
@@ -22,14 +22,14 @@ OpenCV development defaults package.
 - The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/focal/libopencv-dev. The MinGW/GCC version is chosen as the current one available on GitHub Actions hosted runners. Note that the existing https://community.chocolatey.org/packages/OpenCV official package does not provide binaries for MinGW/GCC.
 
 ## Quick start
-- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y libopencv-dev cmake.install --installargs 'ADD_CMAKE_TO_PATH=System'` in PowerShell, reboot and then get the folder from https://www.ensta-bretagne.fr/lebars/Share/ImageOpenCV420_Ubuntu20.04.zip and inside, try `cmake -G "MinGW Makefiles" .`, then `cmake --build .`, then `.\ImageOpenCV.exe` in a new PowerShell window and check that an image appears in a window.
+- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y libopencv-dev cmake.install --installargs 'ADD_CMAKE_TO_PATH=System'` in PowerShell, reboot and then get the folder from https://www.ensta-bretagne.fr/lebars/Share/ImageOpenCV454_Ubuntu22.04.zip and inside, try `cmake -G "MinGW Makefiles" .`, then `cmake --build .`, then `.\ImageOpenCV.exe` in a new PowerShell window and check that an image appears in a window.
 
 ## Troubleshooting
 - Check that all the packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using `--force` or try a previous version...
 
 ## Package parameters
 The following package parameters can be set:
-- `/url:URL` - Will install the specified self-extracting OpenCV package, see e.g. versions from https://github.com/lebarsfa/Packages/releases (the Windows `PATH` might need to be updated manually with e.g. `C:\OpenCV4.2.0\x86\vc15\bin`, you might need to set manually CMake variables `OpenCV_ARCH` e.g. to `x86`, `OpenCV_RUNTIME` e.g. to `vc15`, `OpenCV_STATIC` e.g. to `ON`, rename folders e.g. from `C:\OpenCV4.2.0\x86\mingw` to `C:\OpenCV4.2.0\x86\mingw7`, etc.). By default, only the MinGW libraries compatible with the corresponding MinGW Chocolatey package dependency are installed. Use the standard parameter `choco install --ignore-dependencies ...` to avoid installing MinGW Chocolatey package dependency if needed.
+- `/url:URL` - Will install the specified self-extracting OpenCV package, see e.g. versions from https://github.com/lebarsfa/Packages/releases (the Windows `PATH` might need to be updated manually with e.g. `C:\OpenCV4.5.4\x86\vc15\bin`, you might need to set manually CMake variables `OpenCV_ARCH` e.g. to `x86`, `OpenCV_RUNTIME` e.g. to `vc15`, `OpenCV_STATIC` e.g. to `ON`, rename folders e.g. from `C:\OpenCV4.5.4\x86\mingw` to `C:\OpenCV4.5.4\x86\mingw7`, etc.). By default, only the MinGW libraries compatible with the corresponding MinGW Chocolatey package dependency are installed. Use the standard parameter `choco install --ignore-dependencies ...` to avoid installing MinGW Chocolatey package dependency if needed.
 - `/InstallDir:INSTALLDIR` - Installation directory.
 - `/NoPath` - Will not try to update Windows PATH.
 - `/NoRegistry` - Will not try to update Windows registry.
@@ -37,16 +37,16 @@ The following package parameters can be set:
 To pass package parameters, use `--params "''"` (e.g. `choco install libopencv-dev --params "'/NoPath /32and64'"`), and use standard parameters `choco install -m -f ...` to install multiple self-extracting OpenCV packages together (if they are not mutually exclusive due to other reasons), e.g.
 ```
 choco install -y chocolatey-core.extension
-choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x86_vc15_staticlib_Debug.exe'"
-choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x86_vc15_lib_Debug.exe'"
-choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x86_vc15_staticlib_Release.exe'"
-choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.2.0.20220805/libopencv-dev.4.2.0_x86_vc15_lib_Release.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Debug.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Debug.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Release.exe'"
+choco install -y -m -f --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Release.exe'"
 ```
     </description>
     <releaseNotes>https://github.com/opencv/opencv/wiki/ChangeLog</releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="mingw" version="[8.1.0]" />
+      <dependency id="mingw" version="[11.2.0]" />
     </dependencies>
   </metadata>
 </package>
