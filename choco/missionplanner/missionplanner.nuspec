@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>missionplanner</id>
-    <version>1.3.77</version>
+    <version>1.3.79</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/missionplanner</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Mission Planner</title>
