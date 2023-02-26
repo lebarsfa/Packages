@@ -60,7 +60,7 @@ jobs:
             - { os: windows-2019, arch: x86, runtime: mingw7, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 7.3.0 x86 static' }
     name: ${{ matrix.cfg.desc }}
     steps: 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         submodules: true
         fetch-depth: 0
