@@ -26,12 +26,15 @@ else {
 	#cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe install-qt --base $Base --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw$MinGWMMVer -m $Modules"
 }
 
+$EscQtSDKMinGWPath = $QtSDKMinGWPath -replace "\\", "/"
+$EscEnvChocolateyInstall = $env:ChocolateyInstall -replace "\\", "/"
+
 $QtVersionFileContent = @" 
 <qtcreator>
  <data>
   <variable>QtVersion.0</variable>
   <valuemap type="QVariantMap">
-   <value type="QString" key="QMakePath">$QtSDKMinGWPath\bin\qmake.exe</value>
+   <value type="QString" key="QMakePath">$EscQtSDKMinGWPath/bin/qmake.exe</value>
    <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Desktop</value>
   </valuemap>
  </data>
@@ -50,7 +53,7 @@ $ToolchainsFileContent = @"
   <variable>ToolChain.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="ProjectExplorer.GccToolChain.OriginalTargetTriple">x86_64-w64-mingw32</value>
-   <value type="QString" key="ProjectExplorer.GccToolChain.Path">$env:ChocolateyInstall\bin\g++.exe</value>
+   <value type="QString" key="ProjectExplorer.GccToolChain.Path">$EscEnvChocolateyInstall/bin/g++.exe</value>
    <valuelist type="QVariantList" key="ProjectExplorer.GccToolChain.PlatformCodeGenFlags"/>
    <valuelist type="QVariantList" key="ProjectExplorer.GccToolChain.PlatformLinkerFlags"/>
    <valuelist type="QVariantList" key="ProjectExplorer.GccToolChain.SupportedAbis">
@@ -69,7 +72,7 @@ $ToolchainsFileContent = @"
   <variable>ToolChain.1</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="ProjectExplorer.GccToolChain.OriginalTargetTriple">x86_64-w64-mingw32</value>
-   <value type="QString" key="ProjectExplorer.GccToolChain.Path">$env:ChocolateyInstall\bin\gcc.exe</value>
+   <value type="QString" key="ProjectExplorer.GccToolChain.Path">$EscEnvChocolateyInstall/bin/gcc.exe</value>
    <valuelist type="QVariantList" key="ProjectExplorer.GccToolChain.PlatformCodeGenFlags"/>
    <valuelist type="QVariantList" key="ProjectExplorer.GccToolChain.PlatformLinkerFlags"/>
    <valuelist type="QVariantList" key="ProjectExplorer.GccToolChain.SupportedAbis">
