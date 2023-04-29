@@ -1,5 +1,5 @@
 if ((Get-ProcessorBits 32) -or $env:ChocolateyForceX86 -eq $true) { $MinGWArch = "32" } else { $MinGWArch = "64" }
-$MinGWMMVer = "112"
+$MinGWMMVer = "81"
 $QtSDKVer = "5.15.2"
 $QtSDKRoot = "C:\Qt"
 $QtSDKPath = "$QtSDKRoot\$QtSDKVer"
