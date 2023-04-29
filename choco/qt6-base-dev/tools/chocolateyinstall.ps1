@@ -29,6 +29,10 @@ else {
 $EscQtSDKMinGWPath = $QtSDKMinGWPath -replace "\\", "/"
 $EscEnvChocolateyInstall = $env:ChocolateyInstall -replace "\\", "/"
 
+if (!$pp['Noqtversionxml']) {
+	if (Test-Path -Path "$env:APPDATA\QtProject\qtcreator\qtversion.xml") {
+		Copy-Item -Path "$env:APPDATA\QtProject\qtcreator\qtversion.xml" -Destination "$env:APPDATA\QtProject\qtcreator\qtversion.xml.bak" -Force -Recurse
+	}
 $QtVersionFileContent = @" 
 <qtcreator>
  <data>
@@ -46,7 +50,12 @@ $QtVersionFileContent = @"
 "@
 New-Item -ItemType Directory -Force -Path "$env:APPDATA\QtProject\qtcreator"
 Set-Content -Path "$env:APPDATA\QtProject\qtcreator\qtversion.xml" -Encoding ASCII -Value "$QtVersionFileContent"
+}
 
+if (!$pp['Notoolchainsxml']) {
+	if (Test-Path -Path "$env:APPDATA\QtProject\qtcreator\toolchains.xml") {
+		Copy-Item -Path "$env:APPDATA\QtProject\qtcreator\toolchains.xml" -Destination "$env:APPDATA\QtProject\qtcreator\toolchains.xml.bak" -Force -Recurse
+	}
 $ToolchainsFileContent = @" 
 <qtcreator>
  <data>
@@ -99,3 +108,4 @@ $ToolchainsFileContent = @"
 "@
 New-Item -ItemType Directory -Force -Path "$env:APPDATA\QtProject\qtcreator"
 Set-Content -Path "$env:APPDATA\QtProject\qtcreator\toolchains.xml" -Encoding ASCII -Value "$ToolchainsFileContent"
+}

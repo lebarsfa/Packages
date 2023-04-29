@@ -18,6 +18,9 @@
     <description>
 Qt 6 base development files.
 
+## Package info
+- The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/jammy/qt6-base-dev. The MinGW/GCC version is chosen as the current one available on GitHub Actions hosted runners.
+
 ## Quick start
 - After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y qt6-base-dev cmake qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
 
@@ -25,12 +28,14 @@ Qt 6 base development files.
 - Check that all the packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using `--force` or try a previous version...
 - False positives may occur with some antivirus software, see https://github.com/miurahr/aqtinstall/issues/423.
 - 32 bit versions of Qt Creator do not seem available any more, see https://github.com/AdmiringWorm/chocolatey-packages/issues/362.
-- If multiple versions of the Qt SDK are already installed, Qt Creator might need to be reconfigured to list them. Please backup %APPDATA%\QtProject\qtcreator\qtversion.xml and %APPDATA%\QtProject\qtcreator\toolchains.xml before installation and check it after or update Tools\Options\Kits in Qt Creator if needed.
+- If multiple versions of the Qt SDK are already installed, Qt Creator might need to be reconfigured to list them. Please backup `%APPDATA%\QtProject\qtcreator\qtversion.xml` and `%APPDATA%\QtProject\qtcreator\toolchains.xml` before installation and check it after or update Tools\Options\Kits in Qt Creator if needed.
 
 ## Package parameters
 The package uses `aqt install-qt` command, see https://github.com/miurahr/aqtinstall. The following package parameters can be set:
 - `/base:URL` - Will pass `--base URL` parameter to `aqt install-qt` command. Useful for offline installations, see https://github.com/miurahr/aqtinstall/issues/224.
 - `/modules:MODULE1 MODULE2...` - Will pass `--modules MODULE1 MODULE2...` parameter to `aqt install-qt` command. By default, `--modules qtcharts` is passed.
+- `/Noqtversionxml` - Will not try to update `%APPDATA%\QtProject\qtcreator\qtversion.xml`.
+- `/Notoolchainsxml` - Will not try to update `%APPDATA%\QtProject\qtcreator\toolchains.xml`.
 To pass parameters, use `--params "''"` (e.g. `choco install qt6-base-dev --params "'/base:http://127.0.0.1:8000/ /modules:qtcharts qtscript'"`).
     </description>
     <releaseNotes>https://wiki.qt.io/Template:Release_Information</releaseNotes>
