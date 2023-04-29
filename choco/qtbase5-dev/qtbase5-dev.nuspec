@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>qtbase5-dev</id>
+    <version>5.15.2</version>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/qtbase5-dev</packageSourceUrl>
+    <owners>lebarsfa</owners>
+    <title>Qt 5 SDK</title>
+    <authors>Qt Project</authors>
+    <projectUrl>https://doc.qt.io/qt-5/</projectUrl>
+    <iconUrl>https://cdn.statically.io/gh/lebarsfa/Packages/23ed816/choco/icons/icon_Qt_78x78px.png</iconUrl>
+    <licenseUrl>https://doc.qt.io/qt-5/licenses-used-in-qt.html</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://code.qt.io/</projectSourceUrl>
+    <docsUrl>https://wiki.qt.io/</docsUrl>
+    <tags>Qt SDK programming library C++ CPP</tags>
+    <summary>Qt 5 base development files.</summary>
+    <description>
+Qt 5 base development files.
+
+## Package info
+- The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/jammy/qtbase5-dev. The MinGW/GCC version is chosen as the current one available on GitHub Actions hosted runners.
+
+## Quick start
+- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y qtbase5-dev cmake qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
+
+## Troubleshooting
+- Check that all the packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using `--force` or try a previous version...
+- False positives may occur with some antivirus software, see https://github.com/miurahr/aqtinstall/issues/423.
+- 32 bit versions of Qt Creator do not seem available any more, see https://github.com/AdmiringWorm/chocolatey-packages/issues/362.
+- If multiple versions of the Qt SDK are already installed, Qt Creator might need to be reconfigured to list them. Please backup `%APPDATA%\QtProject\qtcreator\qtversion.xml` and `%APPDATA%\QtProject\qtcreator\toolchains.xml` before installation and check it after or update Tools\Options\Kits in Qt Creator if needed.
+
+## Package parameters
+The package uses `aqt install-qt` command, see https://github.com/miurahr/aqtinstall. The following package parameters can be set:
+- `/base:URL` - Will pass `--base URL` parameter to `aqt install-qt` command. Useful for offline installations, see https://github.com/miurahr/aqtinstall/issues/224.
+- `/modules:MODULE1 MODULE2...` - Will pass `--modules MODULE1 MODULE2...` parameter to `aqt install-qt` command. By default, `--modules qtcharts qtscript` is passed.
+- `/Noqtversionxml` - Will not try to update `%APPDATA%\QtProject\qtcreator\qtversion.xml`.
+- `/Notoolchainsxml` - Will not try to update `%APPDATA%\QtProject\qtcreator\toolchains.xml`.
+To pass parameters, use `--params "''"` (e.g. `choco install qtbase5-dev --params "'/base:http://127.0.0.1:8000/ /modules:qtcharts qtscript'"`).
+    </description>
+    <releaseNotes>https://wiki.qt.io/Template:Release_Information</releaseNotes>
+    <dependencies>
+      <dependency id="chocolatey-core.extension" version="1.1.0" />
+      <dependency id="aqt" version="2.0.6" />
+      <dependency id="mingw" version="[11.2.0.07112021]" />
+    </dependencies>
+  </metadata>
+</package>
