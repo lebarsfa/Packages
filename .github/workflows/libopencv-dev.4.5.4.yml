@@ -80,7 +80,7 @@ jobs:
         echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
       if: (matrix.cfg.runtime=='mingw8')&&(matrix.cfg.arch=='x86')
     - run: |
-        choco install -y -r --no-progress mingw --version=11.2.0 --force ${{ matrix.cfg.choco_flags }}
+        choco install -y -r --no-progress mingw --version=11.2.0.07112021 --force ${{ matrix.cfg.choco_flags }}
         echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
       if: (matrix.cfg.runtime=='mingw11')&&(matrix.cfg.arch=='x86')
     - run: |
