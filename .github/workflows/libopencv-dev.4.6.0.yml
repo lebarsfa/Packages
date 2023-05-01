@@ -46,6 +46,10 @@ jobs:
             - { os: windows-2019, arch: x86, runtime: vc14, shared: 'ON', cmake_params: '-G "Visual Studio 16" -T v140 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2015 x86 Debug' }
             - { os: windows-2019, arch: x86, runtime: vc14, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v140 -A Win32', choco_flags: '--x86', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2015 x86 static' }
             - { os: windows-2019, arch: x86, runtime: vc14, shared: 'OFF', cmake_params: '-G "Visual Studio 16" -T v140 -A Win32', choco_flags: '--x86', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2015 x86 static Debug' }
+            - { os: windows-2022, arch: x64, runtime: mingw12, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 12.2.0 x64' }
+            - { os: windows-2022, arch: x64, runtime: mingw12, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 12.2.0 x64 static' }
+            - { os: windows-2022, arch: x86, runtime: mingw12, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 12.2.0 x86' }
+            - { os: windows-2022, arch: x86, runtime: mingw12, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 12.2.0 x86 static' }
             - { os: windows-2022, arch: x64, runtime: mingw11, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 11.2.0 x64' }
             - { os: windows-2022, arch: x64, runtime: mingw11, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 11.2.0 x64 static' }
             - { os: windows-2022, arch: x86, runtime: mingw11, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 11.2.0 x86' }
@@ -54,10 +58,6 @@ jobs:
             - { os: windows-2019, arch: x64, runtime: mingw8, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 8.1.0 x64 static' }
             - { os: windows-2019, arch: x86, runtime: mingw8, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 8.1.0 x86' }
             - { os: windows-2019, arch: x86, runtime: mingw8, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 8.1.0 x86 static' }
-            - { os: windows-2019, arch: x64, runtime: mingw7, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 7.3.0 x64' }
-            - { os: windows-2019, arch: x64, runtime: mingw7, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', cmake_config: 'Release', desc: 'MinGW 7.3.0 x64 static' }
-            - { os: windows-2019, arch: x86, runtime: mingw7, shared: 'ON', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 7.3.0 x86' }
-            - { os: windows-2019, arch: x86, runtime: mingw7, shared: 'OFF', cmake_params: '-G "MinGW Makefiles"', choco_flags: '--x86', cmake_config: 'Release', desc: 'MinGW 7.3.0 x86 static' }
     name: ${{ matrix.cfg.desc }}
     steps: 
     - uses: actions/checkout@v3
@@ -72,10 +72,6 @@ jobs:
         wget http://www.ensta-bretagne.fr/lebars/Share/windows_server_core_prereq.zip --no-check-certificate -nv
         7z x windows_server_core_prereq.zip -o"%SystemRoot%" -y & cd. & rem ksuser.dll already on windows-2016...?
     - run: |
-        choco install -y -r --no-progress mingw --version=7.3.0 --force ${{ matrix.cfg.choco_flags }}
-        echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
-      if: (matrix.cfg.runtime=='mingw7')
-    - run: |
         choco install -y -r --no-progress mingw --version=8.1.0 --force ${{ matrix.cfg.choco_flags }}
         echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
       if: (matrix.cfg.runtime=='mingw8')&&(matrix.cfg.arch=='x86')
@@ -84,9 +80,14 @@ jobs:
         echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
       if: (matrix.cfg.runtime=='mingw11')&&(matrix.cfg.arch=='x86')
     - run: |
+        choco install -y -r --no-progress mingw --version=12.2.0.03042023 --force ${{ matrix.cfg.choco_flags }}
+        echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw32\bin>>%GITHUB_PATH%
+        echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin>>%GITHUB_PATH%
+      if: (matrix.cfg.runtime=='mingw12')
+    - run: |
         git clone --depth 1 -b 4.6.0 https://github.com/opencv/opencv.git
         git clone --depth 1 -b 4.6.0 https://github.com/opencv/opencv_contrib.git
-        #patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
+        patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
         mkdir build
         cd build
         export _RUNTIME=${{ matrix.cfg.runtime }}
