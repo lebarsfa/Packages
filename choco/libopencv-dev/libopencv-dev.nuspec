@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>libopencv-dev</id>
-    <version>4.5.4.20230429</version>
-    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.4.5.4/choco/libopencv-dev</packageSourceUrl>
+    <version>4.6.0</version>
+    <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.4.6.0/choco/libopencv-dev</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Development files for OpenCV</title>
     <authors>OpenCV team</authors>
@@ -29,7 +29,7 @@ OpenCV development defaults package.
 
 ## Package parameters
 The following package parameters can be set:
-- `/url:URL` - Will install the specified self-extracting OpenCV package, see e.g. versions from https://github.com/lebarsfa/Packages/releases (the Windows `PATH` might need to be updated manually with e.g. `C:\OpenCV4.5.4\x86\vc15\bin`, you might need to set manually CMake variables `OpenCV_ARCH` e.g. to `x86`, `OpenCV_RUNTIME` e.g. to `vc15`, `OpenCV_STATIC` e.g. to `ON`, rename folders e.g. from `C:\OpenCV4.5.4\x86\mingw` to `C:\OpenCV4.5.4\x86\mingw7`, etc.). By default, only the MinGW libraries compatible with the corresponding MinGW Chocolatey package dependency are installed. Use the standard parameter `choco install --ignore-dependencies ...` to avoid installing MinGW Chocolatey package dependency if needed.
+- `/url:URL` - Will install the specified self-extracting OpenCV package, see e.g. versions from https://github.com/lebarsfa/Packages/releases (the Windows `PATH` might need to be updated manually with e.g. `C:\OpenCV4.6.0\x86\vc15\bin`, you might need to set manually CMake variables `OpenCV_ARCH` e.g. to `x86`, `OpenCV_RUNTIME` e.g. to `vc15`, `OpenCV_STATIC` e.g. to `ON`, rename folders e.g. from `C:\OpenCV4.6.0\x86\mingw` to `C:\OpenCV4.6.0\x86\mingw7`, etc.). By default, only the MinGW libraries compatible with the corresponding MinGW Chocolatey package dependency are installed. Use the standard parameter `choco install --ignore-dependencies ...` to avoid installing MinGW Chocolatey package dependency if needed.
 - `/urlX:URL` - Same as above, with X in [1,99], except this will not disable the installation of the MinGW libraries compatible with the corresponding MinGW Chocolatey package dependency.
 - `/InstallDir:INSTALLDIR` - Installation directory.
 - `/NoPath` - Will not try to update Windows `PATH`.
@@ -38,7 +38,7 @@ The following package parameters can be set:
 To pass package parameters, use `--params "''"` (e.g. `choco install libopencv-dev --params "'/NoPath /32and64'"`), and to install multiple self-extracting OpenCV packages together (if they are not mutually exclusive due to other reasons), try e.g.
 ```
 choco install -y chocolatey-core.extension
-choco install -y --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Debug.exe /url1:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Debug.exe /url2:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_staticlib_Release.exe /url3:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.5.4.20220805/libopencv-dev.4.5.4_x86_vc15_lib_Release.exe'"
+choco install -y --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0/libopencv-dev.4.6.0_x86_vc15_staticlib_Debug.exe /url1:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0/libopencv-dev.4.6.0_x86_vc15_lib_Debug.exe /url2:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0/libopencv-dev.4.6.0_x86_vc15_staticlib_Release.exe /url3:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0/libopencv-dev.4.6.0_x86_vc15_lib_Release.exe'"
 ```
     </description>
     <releaseNotes>https://github.com/opencv/opencv/wiki/ChangeLog</releaseNotes>
