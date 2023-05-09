@@ -12,7 +12,7 @@ if ($pp.InstallDir -or $pp.InstallationPath) {
 }
 Write-Host "OpenCV$OpenCVVer is going to be installed in '$installDir'"
 
-$root = Join-Path $installDir "OpenCV$OpenCVVer" -Resolve
+$root = Join-Path $installDir "OpenCV$OpenCVVer"
 New-Item -ItemType Directory -Force -Path $root | Out-Null
 
 if (!$pp['url']) { 
