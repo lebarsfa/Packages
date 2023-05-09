@@ -10,7 +10,7 @@ if ($pp.InstallDir -or $pp.InstallationPath) {
 }
 Write-Host "OpenCV$OpenCVVer is going to be uninstalled from '$installDir'"
 
-$root = Join-Path $installDir "OpenCV$OpenCVVer"
+$root = Join-Path $installDir "OpenCV$OpenCVVer" -Resolve
 
 $newpath = [environment]::GetEnvironmentVariable("Path","Machine")
 $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$root\x86\mingw\bin" }) -join ';'
