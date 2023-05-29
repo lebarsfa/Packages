@@ -12,18 +12,27 @@ else {
 	$Modules = $pp['modules']
 }
 
+if (!$pp['config']) { 
+	$Config = ""
+}
+else {
+	$settings_ini = $pp['config']
+	$Config = "--config $settings_ini"
+}
+
 if (!$pp['base']) { 
-	cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe install-qt --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw -m $Modules" 
-	#cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe install-qt --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw$MinGWMMVer -m $Modules" 
+	cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe $Config install-qt --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw -m $Modules" 
+	#cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe $Config install-qt --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw$MinGWMMVer -m $Modules" 
 }
 else { 
 	$Base = $pp['base']
 	# For offline install...
 	# Before, set up qt6-base-dev-6.2.4\online\qtsdkrepository\windows_x86\desktop\qt6_624 folder with data from e.g. ftp://mirrors.dotsrc.org/.mirrors/qtproject/online/qtsdkrepository/windows_x86/desktop/qt6_624 from a computer with the Internet.
-	# On the computer to be installed and to be able to use the --base parameter of aqt install, which does not seem to accept directly local folders (firewall might need to be configured to temporarily allow TCP port 8000, e.g. netsh advfirewall firewall add rule name="Open Port 8000 TCP" dir=in action=allow protocol=TCP localport=8000) : start python -m http.server --directory qt6-base-dev-6.2.4
+	# On the computer to be installed and to be able to use the --base parameter of aqt install-qt, which does not seem to accept directly local folders (firewall might need to be configured to temporarily allow TCP port 8000, e.g. netsh advfirewall firewall add rule name="Open Port 8000 TCP" dir=in action=allow protocol=TCP localport=8000): start python -m http.server --directory qt6-base-dev-6.2.4
+	# Also, ignore_hash option might need to be set to True in settings.ini, which should be passed using --config parameter of aqt.
 	# Unknown MinGW version for the 6.2.4 binaries...?
-	cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe install-qt --base $Base --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw -m $Modules"
-	#cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe install-qt --base $Base --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw$MinGWMMVer -m $Modules"
+	cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe $Config install-qt --base $Base --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw -m $Modules"
+	#cmd /c "refreshenv & cd $env:TEMP & $env:ChocolateyInstall\bin\aqt.exe $Config install-qt --base $Base --outputdir $QtSDKRoot windows desktop $QtSDKVer win$MinGWArch`_mingw$MinGWMMVer -m $Modules"
 }
 
 $EscQtSDKMinGWPath = $QtSDKMinGWPath -replace "\\", "/"
