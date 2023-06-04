@@ -33,12 +33,6 @@ $packageArgs = @{
 
 Install-ChocolateyZipPackage @packageArgs
 
-# As a disk space optimization, C:\ProgramData\chocolatey\lib\mingw\tools\install can be deleted.
-$MinGWInstallDir = Join-Path "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)" "..\..\mingw\tools\install"
-if (Test-Path $MinGWInstallDir) {
-    Remove-Item -Recurse -Force $MinGWInstallDir
-}
-
 $("mingw32", "mingw64") | ForEach {
   $bin = (Join-Path $pp.InstallDir (Join-Path $_ "bin"))
   Write-Output "Testing path: $bin"
