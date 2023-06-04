@@ -1,6 +1,6 @@
 
 $pp = Get-PackageParameters
-if (!$pp.InstallDir) { $pp.InstallDir = Join-Path "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)" "install" }
+if (!$pp.InstallDir) { $pp.InstallDir = Join-Path "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)" "..\..\mingw\tools\install" }
 $packageArgs = @{
 	packageName   = $env:ChocolateyPackageName
 	unzipLocation = $pp.InstallDir
