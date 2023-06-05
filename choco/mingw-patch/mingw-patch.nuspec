@@ -12,5 +12,8 @@
     <summary>GCC for Windows 64 &amp; 32 bits.</summary>
     <tags>compiler gcc mingw mingw-w64</tags>
     <packageSourceUrl>https://bitbucket.org/xoviat/chocolatey-packages</packageSourceUrl>
+    <dependencies>
+      <dependency id="mingw" version="[11.2.0.07112021]" />
+    </dependencies>
   </metadata>
 </package>

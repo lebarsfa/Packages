@@ -1,21 +1,6 @@
 
 $pp = Get-PackageParameters
-if (!$pp.InstallDir) { $pp.InstallDir = Join-Path "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)" "..\..\mingw\tools\install" }
-$packageArgs = @{
-	packageName   = $env:ChocolateyPackageName
-	unzipLocation = $pp.InstallDir
-	fileType      = 'zip'
-	url           = 'https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-12.0.1-9.0.0-r1/winlibs-i686-posix-dwarf-gcc-11.2.0-mingw-w64-9.0.0-r1.7z'
-	url64bit      = 'https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-12.0.1-9.0.0-r1/winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.7z'
-	checksum      = 'c0d6c0f2603f9eaac61374c6c59bdd1e1b13a77d2a4cb095517a7de5fbccb119'
-	checksumType  = 'sha256'
-	checksum64    = '0e23b675ecd3e3edef6ad054582812d47568899cd277cb49910f8d06bd948a86'
-	checksumType64= 'sha256'
-
-}
-
-New-Item -ItemType Directory -Force -Path $pp.InstallDir | Out-Null
-Install-ChocolateyZipPackage @packageArgs
+if (!$pp.InstallDir) { $pp.InstallDir = Join-Path "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)" "..\..\mingw\tools\install" | Resolve-Path }
 
 # New gdb, etc.
 $packageArgs = @{
@@ -33,11 +18,11 @@ $packageArgs = @{
 
 Install-ChocolateyZipPackage @packageArgs
 
+# Set to Machine PATH instead of User.
 $("mingw32", "mingw64") | ForEach {
   $bin = (Join-Path $pp.InstallDir (Join-Path $_ "bin"))
   Write-Output "Testing path: $bin"
   If (Test-Path $bin) {
-    Install-ChocolateyPath $bin
+    Install-ChocolateyPath $bin -PathType 'Machine'
   }
 }
-
