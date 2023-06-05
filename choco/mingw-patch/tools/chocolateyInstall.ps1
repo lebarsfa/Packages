@@ -18,11 +18,11 @@ $packageArgs = @{
 
 Install-ChocolateyZipPackage @packageArgs
 
-# Set to Machine PATH instead of User.
 $("mingw32", "mingw64") | ForEach {
   $bin = (Join-Path $pp.InstallDir (Join-Path $_ "bin"))
   Write-Output "Testing path: $bin"
   If (Test-Path $bin) {
-    Install-ChocolateyPath $bin -PathType 'Machine'
+    Install-ChocolateyPath $bin
   }
 }
+
