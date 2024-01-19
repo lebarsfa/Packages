@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>formatfactory</id>
-    <version>4.10.5.0</version>
+    <version>4.10.5.20240119</version>
     <title>Format Factory</title>
     <authors>Free Time</authors>
     <owners>Firewauker</owners>

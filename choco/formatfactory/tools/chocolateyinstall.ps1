@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop';
 
 $packageName= 'formatfactory'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'http://public.pcfreetime.com/FFSetup4.10.5.0.exe'
+$url        = 'https://web.archive.org/web/20220130214622/http://public.pcfreetime.com/FFSetup4.10.5.0.exe'
 
 $packageArgs = @{
   packageName   = $packageName
