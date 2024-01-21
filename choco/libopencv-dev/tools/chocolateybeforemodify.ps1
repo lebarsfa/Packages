@@ -8,9 +8,9 @@ $installDir = $env:SystemDrive
 if ($pp.InstallDir -or $pp.InstallationPath) { 
 	$installDir = $pp.InstallDir + $pp.InstallationPath 
 }
-Write-Host "OpenCV$OpenCVVer is going to be uninstalled from '$installDir'"
+Write-Host "$CMakePackageName$CMakePackageVer is going to be uninstalled from '$installDir'"
 
-$root = Join-Path $installDir "OpenCV$OpenCVVer"
+$root = Join-Path $installDir "$CMakePackageName$CMakePackageVer"
 
 $newpath = [environment]::GetEnvironmentVariable("Path","Machine")
 $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$root\x86\mingw\bin" }) -join ';'
@@ -38,9 +38,13 @@ $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$root\x64\vc18\bin" }) 
 [environment]::SetEnvironmentVariable("Path",$newpath,"Machine")
 
 if (Test-Path $CMakeRegistryPath) {
-  if (Test-Path $CMakeSystemRepositoryPath\$CMakePackageName) {
-      Remove-Item "$CMakeSystemRepositoryPath\$CMakePackageName"
-  }
+    try {
+        Get-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName | Select-Object -ExpandProperty $CMakePackageName$CMakePackageVer -ErrorAction Stop | Out-Null
+        Remove-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName -Name $CMakePackageName$CMakePackageVer
+    }
+    catch {
+
+    }
 }
 
 if (Test-Path $root) {

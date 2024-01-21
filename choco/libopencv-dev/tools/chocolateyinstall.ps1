@@ -10,9 +10,9 @@ $installDir = $env:SystemDrive
 if ($pp.InstallDir -or $pp.InstallationPath) { 
 	$installDir = $pp.InstallDir + $pp.InstallationPath 
 }
-Write-Host "OpenCV$OpenCVVer is going to be installed in '$installDir'"
+Write-Host "$CMakePackageName$CMakePackageVer is going to be installed in '$installDir'"
 
-$root = Join-Path $installDir "OpenCV$OpenCVVer"
+$root = Join-Path $installDir "$CMakePackageName$CMakePackageVer"
 New-Item -ItemType Directory -Force -Path $root | Out-Null
 
 if (!$pp['url']) { 
@@ -149,7 +149,7 @@ else {
 
 if (!$pp['NoRegistry']) {
 	New-Item "$CMakeSystemRepositoryPath\$CMakePackageName" -ItemType directory -Force
-	New-ItemProperty -Name "CMakePackageDir" -PropertyType String -Value "$root" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
+	New-ItemProperty -Name "$CMakePackageName$CMakePackageVer" -PropertyType String -Value "$root" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
 }
 $pathtoadd = "$root\$arch\$runtime\bin"
 if (!($pp['NoPath']) -and !([environment]::GetEnvironmentVariable("Path","Machine") -match [regex]::escape($pathtoadd))) {
@@ -216,7 +216,7 @@ for ($i = 1; $i -le 99; $i++) {
 
 		if (!$pp['NoRegistry']) {
 			New-Item "$CMakeSystemRepositoryPath\$CMakePackageName" -ItemType directory -Force
-			New-ItemProperty -Name "CMakePackageDir" -PropertyType String -Value "$root" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
+			New-ItemProperty -Name "$CMakePackageName$CMakePackageVer" -PropertyType String -Value "$root" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
 		}
 		$pathtoadd = "$root\$arch\$runtime\bin"
 		if (!($pp['NoPath']) -and !([environment]::GetEnvironmentVariable("Path","Machine") -match [regex]::escape($pathtoadd))) {
