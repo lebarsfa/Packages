@@ -1,3 +1,6 @@
+env:
+    OPENCVVER: 4.5.4
+
 on:
     push:
         branches: 'libopencv-dev.4.5.4'
@@ -84,8 +87,8 @@ jobs:
     - run: choco uninstall -y -r --no-progress mingw --force & rd /s /q C:\mingw64 & choco install -y -r --no-progress mingw --version=13.2.0 --force ${{ matrix.cfg.choco_flags }} & echo C:\ProgramData\mingw64\mingw${{ matrix.cfg.bitness }}\bin>>%GITHUB_PATH%
       if: (matrix.cfg.runtime=='mingw13')
     - run: |
-        git clone --depth 1 -b 4.5.4 https://github.com/opencv/opencv.git
-        git clone --depth 1 -b 4.5.4 https://github.com/opencv/opencv_contrib.git
+        git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv.git
+        git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv_contrib.git
         patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
         mkdir build
         cd build
@@ -93,22 +96,22 @@ jobs:
         cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=ON -D BUILD_opencv_python3=OFF -D BUILD_SHARED_LIBS=${{ matrix.cfg.shared }} -D BUILD_WITH_DEBUG_INFO=OFF -D BUILD_DOCS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_TESTS=OFF -D BUILD_opencv_world=${{ matrix.cfg.shared }} -D WITH_CUDA=OFF ../opencv
         cmake --build . --config ${{ matrix.cfg.cmake_config }} --target package
         if [[ ${{ matrix.cfg.shared }} = OFF ]]; then export _STATIC=static ; else unset _STATIC ; fi
-        mv *.exe ../libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe
+        mv *.exe ../libopencv-dev.${{ env.OPENCVVER }}_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe
         cd ../choco/libopencv-dev
         mv tools/cv_mat_test ..
         mv tools/no_iconv_mingw.patch ..
         choco pack
-        choco install -y -r --no-progress --ignore-dependencies -s . libopencv-dev --params "'/url:../../libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
+        choco install -y -r --no-progress --ignore-dependencies -s . libopencv-dev --params "'/url:../../libopencv-dev.${{ env.OPENCVVER }}_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
         cd ../cv_mat_test
         if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
         cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true
         cmake --build . --config ${{ matrix.cfg.cmake_config }}
-        export PATH=/c/OpenCV4.5.4/${{ matrix.cfg.arch }}/${_RUNTIME:0:5}/bin:$PATH
+        export PATH=/c/OpenCV${{ env.OPENCVVER }}/${{ matrix.cfg.arch }}/${_RUNTIME:0:5}/bin:$PATH
         echo $PATH
         file ./${{ matrix.cfg.test_config }}cv_mat_test
         ./${{ matrix.cfg.test_config }}cv_mat_test || true
         cd ../..
-        checksum -f=libopencv-dev.4.5.4_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe -t=sha256
+        checksum -f=libopencv-dev.${{ env.OPENCVVER }}_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe -t=sha256
       shell: bash
     - uses: xresloader/upload-to-github-release@v1
       env:
@@ -117,4 +120,4 @@ jobs:
         file: "*.exe"
         overwrite: true
         tag_name: autotagname-${{ github.sha }}
-      if: (github.event_name != 'pull_request')&&(github.ref_name == 'libopencv-dev.4.5.4')
+      if: (github.event_name != 'pull_request')&&(github.ref_name == 'libopencv-dev.${{ env.OPENCVVER }}')
