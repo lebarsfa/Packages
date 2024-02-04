@@ -40,14 +40,12 @@ $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$root\x86\vc18\bin" }) 
 $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$root\x64\vc18\bin" }) -join ';'
 [environment]::SetEnvironmentVariable("Path",$newpath,"Machine")
 
-if (Test-Path $CMakeRegistryPath) {
-    try {
-        Get-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName | Select-Object -ExpandProperty $CMakePackageName$CMakePackageVer -ErrorAction Stop | Out-Null
-        Remove-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName -Name $CMakePackageName$CMakePackageVer
-    }
-    catch {
+try {
+    Get-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName | Select-Object -ExpandProperty $CMakePackageName$CMakePackageVer -ErrorAction Stop | Out-Null
+    Remove-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName -Name $CMakePackageName$CMakePackageVer
+}
+catch {
 
-    }
 }
 
 if (Test-Path $root) {
