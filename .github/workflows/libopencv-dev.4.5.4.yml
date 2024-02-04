@@ -78,15 +78,36 @@ jobs:
         powershell -Command "Install-WindowsFeature Server-Media-Foundation"
         wget http://www.ensta-bretagne.fr/lebars/Share/windows_server_core_prereq.zip --no-check-certificate -nv
         7z x windows_server_core_prereq.zip -o"%SystemRoot%" -y & cd. & rem ksuser.dll already on windows-2016...?
-    - run: choco uninstall -y -r --no-progress mingw --force & rd /s /q C:\mingw64 & choco install -y -r --no-progress mingw --version=8.1.0 --force ${{ matrix.cfg.choco_flags }} & echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw${{ matrix.cfg.bitness }}\bin>>%GITHUB_PATH%
+        del /f /q windows_server_core_prereq.zip
+        wget http://www.ensta-bretagne.fr/lebars/Share/cmake_extra_tools.zip --no-check-certificate -nv
+        7z x cmake_extra_tools.zip -o"%SystemDrive%" -y
+        del /f /q cmake_extra_tools.zip
+        wget https://gist.github.com/lebarsfa/237841f9e5dad55ef192713b3b1b2f16/raw/04d77ced3457346c55f183ca12a10dbcb850e6d5/refreshenv.bashrc --no-check-certificate -nv
+        move /y refreshenv.bashrc %USERPROFILE%
+    - run: |
+        choco install -y -r --no-progress mingw --version=8.1.0 --force ${{ matrix.cfg.choco_flags }}
+        %SystemDrive%\cmake_extra_tools\pathman /as C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw${{ matrix.cfg.bitness }}\bin & cd. & rem Non-zero exit code...?
+        echo export BASHMINGWPATH=/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw${{ matrix.cfg.bitness }}/bin>>%USERPROFILE%\.bashrc
       if: (matrix.cfg.runtime=='mingw8')
-    - run: choco uninstall -y -r --no-progress mingw --force & rd /s /q C:\mingw64 & choco install -y -r --no-progress mingw --version=11.2.0.07112021 --force ${{ matrix.cfg.choco_flags }} & echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw${{ matrix.cfg.bitness }}\bin>>%GITHUB_PATH%
+    - run: |
+        choco install -y -r --no-progress mingw --version=11.2.0.07112021 --force ${{ matrix.cfg.choco_flags }}
+        %SystemDrive%\cmake_extra_tools\pathman /as C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw${{ matrix.cfg.bitness }}\bin & cd. & rem Non-zero exit code...?
+        echo export BASHMINGWPATH=/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw${{ matrix.cfg.bitness }}/bin>>%USERPROFILE%\.bashrc
       if: (matrix.cfg.runtime=='mingw11')
-    - run: choco uninstall -y -r --no-progress mingw --force & rd /s /q C:\mingw64 & choco install -y -r --no-progress mingw --version=12.2.0.03042023 --force ${{ matrix.cfg.choco_flags }} & echo C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw${{ matrix.cfg.bitness }}\bin>>%GITHUB_PATH%
+    - run: |
+        choco install -y -r --no-progress mingw --version=12.2.0.03042023 --force ${{ matrix.cfg.choco_flags }}
+        %SystemDrive%\cmake_extra_tools\pathman /as C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw${{ matrix.cfg.bitness }}\bin & cd. & rem Non-zero exit code...?
+        echo export BASHMINGWPATH=/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw${{ matrix.cfg.bitness }}/bin>>%USERPROFILE%\.bashrc
       if: (matrix.cfg.runtime=='mingw12')
-    - run: choco uninstall -y -r --no-progress mingw --force & rd /s /q C:\mingw64 & choco install -y -r --no-progress mingw --version=13.2.0 --force ${{ matrix.cfg.choco_flags }} & echo C:\ProgramData\mingw64\mingw${{ matrix.cfg.bitness }}\bin>>%GITHUB_PATH%
+    - run: |
+        choco install -y -r --no-progress mingw --version=13.2.0 --force ${{ matrix.cfg.choco_flags }}
+        %SystemDrive%\cmake_extra_tools\pathman /as C:\ProgramData\mingw64\mingw${{ matrix.cfg.bitness }}\bin & cd. & rem Non-zero exit code...?
+        echo export BASHMINGWPATH=/c/ProgramData/mingw64/mingw${{ matrix.cfg.bitness }}/bin>>%USERPROFILE%\.bashrc
       if: (matrix.cfg.runtime=='mingw13')
     - run: |
+        source ~/refreshenv.bashrc ; refreshenv
+        export PATH=$BASHMINGWPATH:$PATH
+        echo $PATH
         git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv.git
         git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv_contrib.git
         patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
@@ -101,15 +122,6 @@ jobs:
         mv tools/cv_mat_test ..
         mv tools/no_iconv_mingw.patch ..
         choco pack
-        choco install -y -r --no-progress --ignore-dependencies -s . libopencv-dev --params "'/url:../../libopencv-dev.${{ env.OPENCVVER }}_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
-        cd ../cv_mat_test
-        if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
-        cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true
-        cmake --build . --config ${{ matrix.cfg.cmake_config }}
-        export PATH=/c/OpenCV${{ env.OPENCVVER }}/${{ matrix.cfg.arch }}/${_RUNTIME:0:5}/bin:$PATH
-        echo $PATH
-        file ./${{ matrix.cfg.test_config }}cv_mat_test
-        ./${{ matrix.cfg.test_config }}cv_mat_test || true
         cd ../..
         checksum -f=libopencv-dev.${{ env.OPENCVVER }}_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe -t=sha256
       shell: bash
@@ -121,3 +133,34 @@ jobs:
         overwrite: true
         tag_name: autotagname-${{ github.sha }}
       if: (github.event_name != 'pull_request')&&(github.ref_name == 'libopencv-dev.${{ env.OPENCVVER }}')
+    - run: |
+        source ~/refreshenv.bashrc ; refreshenv
+        export PATH=$BASHMINGWPATH:$PATH
+        echo $PATH
+        export _RUNTIME=${{ matrix.cfg.runtime }}
+        if [[ ${{ matrix.cfg.shared }} = OFF ]]; then export _STATIC=static ; else unset _STATIC ; fi
+        cd choco/libopencv-dev
+        choco install -y -r --no-progress --ignore-dependencies -s . libopencv-dev --params "'/url:../../libopencv-dev.${{ env.OPENCVVER }}_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe'"
+        source ~/refreshenv.bashrc ; refreshenv
+        export PATH=$BASHMINGWPATH:$PATH
+        echo $PATH
+        reg query "HKLM\SOFTWARE\Kitware\CMake\Packages\OpenCV"
+        cd ../cv_mat_test
+        if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
+        cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true
+        cmake --build . --config ${{ matrix.cfg.cmake_config }}
+        file ./${{ matrix.cfg.test_config }}cv_mat_test
+        ./${{ matrix.cfg.test_config }}cv_mat_test
+        cd ../..
+      shell: bash
+    - run: |
+        Import-Module "$env:ChocolateyInstall/helpers/chocolateyInstaller.psm1" ; refreshenv
+        echo $env:PATH
+        reg query "HKLM\SOFTWARE\Kitware\CMake\Packages\OpenCV"
+        choco uninstall -y -r --no-progress libopencv-dev
+      shell: pwsh
+    - run: |
+        Import-Module "$env:ChocolateyInstall/helpers/chocolateyInstaller.psm1" ; refreshenv
+        echo $env:PATH
+        reg query "HKLM\SOFTWARE\Kitware\CMake\Packages\OpenCV"
+      shell: pwsh
