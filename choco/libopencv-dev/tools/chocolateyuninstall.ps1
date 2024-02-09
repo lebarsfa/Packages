@@ -3,7 +3,10 @@
 # Source variables which are shared between install and uninstall.
 . $PSScriptRoot\sharedVars.ps1
 
+$toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+
 $pp = Get-PackageParameters
+$packageDir = Join-Path "$toolsDir" ".." -Resolve
 $installDir = $env:SystemDrive
 if ($pp.InstallDir -or $pp.InstallationPath) { 
 	$installDir = $pp.InstallDir + $pp.InstallationPath 
@@ -48,5 +51,7 @@ if (Test-Path $CMakeRegistryPath) {
 }
 
 if (Test-Path $root) {
-    Remove-Item -Recurse -Force $root
+    if ((Resolve-Path $root).Path -notcontains (Resolve-Path $packageDir).Path) {
+        Remove-Item -Recurse -Force $root
+    }
 }
