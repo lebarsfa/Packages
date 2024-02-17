@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>qt5-default</id>
-    <version>5.15.2.20230529</version>
+    <version>5.15.2.20240217</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/qt5-default</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Qt 5 SDK</title>
