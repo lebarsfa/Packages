@@ -8,6 +8,13 @@ $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$QtSDKMinGWPath\bin" })
 [environment]::SetEnvironmentVariable("Path",$newpath,"Machine")
 
 try {
+    Get-ItemProperty -Path "$CMakeSystemRepositoryPath\Qt" | Select-Object -ExpandProperty "qt$QtSDKMVer`_$QtSDKMMPVer`_win$MinGWArch`_mingw$MinGWMMVer" -ErrorAction Stop | Out-Null
+    Remove-ItemProperty -Path "$CMakeSystemRepositoryPath\Qt" -Name "qt$QtSDKMVer`_$QtSDKMMPVer`_win$MinGWArch`_mingw$MinGWMMVer"
+}
+catch {
+
+}
+try {
     Get-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName | Select-Object -ExpandProperty "qt$QtSDKMVer`_$QtSDKMMPVer`_win$MinGWArch`_mingw$MinGWMMVer" -ErrorAction Stop | Out-Null
     Remove-ItemProperty -Path $CMakeSystemRepositoryPath\$CMakePackageName -Name "qt$QtSDKMVer`_$QtSDKMMPVer`_win$MinGWArch`_mingw$MinGWMMVer"
 }

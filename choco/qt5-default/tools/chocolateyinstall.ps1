@@ -115,6 +115,8 @@ Set-Content -Path "$env:APPDATA\QtProject\qtcreator\toolchains.xml" -Encoding AS
 }
 
 if (!$pp['NoRegistry']) {
+	New-Item "$CMakeSystemRepositoryPath\Qt" -ItemType directory -Force
+	New-ItemProperty -Name "qt$QtSDKMVer`_$QtSDKMMPVer`_win$MinGWArch`_mingw$MinGWMMVer" -PropertyType String -Value "$QtSDKMinGWPath" -Path "$CMakeSystemRepositoryPath\Qt" -Force
 	New-Item "$CMakeSystemRepositoryPath\$CMakePackageName" -ItemType directory -Force
 	New-ItemProperty -Name "qt$QtSDKMVer`_$QtSDKMMPVer`_win$MinGWArch`_mingw$MinGWMMVer" -PropertyType String -Value "$QtSDKMinGWPath" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
 }
