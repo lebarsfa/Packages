@@ -113,3 +113,13 @@ $ToolchainsFileContent = @"
 New-Item -ItemType Directory -Force -Path "$env:APPDATA\QtProject\qtcreator"
 Set-Content -Path "$env:APPDATA\QtProject\qtcreator\toolchains.xml" -Encoding ASCII -Value "$ToolchainsFileContent"
 }
+
+if (!$pp['NoRegistry']) {
+	New-Item "$CMakeSystemRepositoryPath\$CMakePackageName" -ItemType directory -Force
+	New-ItemProperty -Name "qt$QtSDKMVer`_$QtSDKMMPVer`_win$MinGWArch`_mingw$MinGWMMVer" -PropertyType String -Value "$QtSDKMinGWPath" -Path "$CMakeSystemRepositoryPath\$CMakePackageName" -Force
+}
+$pathtoadd = "$QtSDKMinGWPath\bin"
+if (($pp['Path']) -and !([environment]::GetEnvironmentVariable("Path","Machine") -match [regex]::escape($pathtoadd))) {
+	$newpath = [environment]::GetEnvironmentVariable("Path","Machine") + ";$pathtoadd"
+	[environment]::SetEnvironmentVariable("Path",$newpath,"Machine")
+}

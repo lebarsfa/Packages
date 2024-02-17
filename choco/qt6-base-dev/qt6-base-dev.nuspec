@@ -35,6 +35,8 @@ The package uses `aqt install-qt` command, see https://github.com/miurahr/aqtins
 - `/base:URL` - Will pass `--base URL` parameter to `aqt install-qt` command. Useful for offline installations, see https://github.com/miurahr/aqtinstall/issues/224.
 - `/config:SETTINGSPATH` - Will pass `--config SETTINGSPATH` parameter to `aqt` command. Useful in combination with `/base` parameter, where `ignore_hash` option might need to be set to True in `settings.ini`, see https://github.com/miurahr/aqtinstall/issues/521.
 - `/modules:MODULE1 MODULE2...` - Will pass `--modules MODULE1 MODULE2...` parameter to `aqt install-qt` command. By default, `--modules qtcharts` is passed.
+- `/Path` - Will try to update Windows `PATH`.
+- `/NoRegistry` - Will not try to update Windows registry.
 - `/Noqtversionxml` - Will not try to update `%APPDATA%\QtProject\qtcreator\qtversion.xml`.
 - `/Notoolchainsxml` - Will not try to update `%APPDATA%\QtProject\qtcreator\toolchains.xml`.
 To pass parameters, use `--params "''"` (e.g. `choco install qt6-base-dev --params "'/base:http://127.0.0.1:8000/ /config:C:\Qt\settings.ini /modules:qtcharts qtscript'"`).
