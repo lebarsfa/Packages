@@ -11,7 +11,7 @@
     <iconUrl>https://cdn.statically.io/gh/lebarsfa/Packages/23ed816/choco/icons/icon_Qt_78x78px.png</iconUrl>
     <licenseUrl>https://doc.qt.io/qt-6/licenses-used-in-qt.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectSourceUrl>https://code.qt.io/</projectSourceUrl>
+    <projectSourceUrl>https://github.com/qt</projectSourceUrl>
     <docsUrl>https://wiki.qt.io/</docsUrl>
     <tags>Qt SDK programming library C++ CPP</tags>
     <summary>Qt 6 base development files.</summary>
