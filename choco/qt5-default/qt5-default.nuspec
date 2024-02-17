@@ -27,7 +27,7 @@ Qt 5 development defaults package.
 ## Troubleshooting
 - Check that all the packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using `--force` or try a previous version...
 - False positives may occur with some antivirus software, see https://github.com/miurahr/aqtinstall/issues/423.
-- 32 bit versions of Qt Creator do not seem available any more, see https://github.com/AdmiringWorm/chocolatey-packages/issues/362.
+- 32 bit versions of Qt Creator do not seem available anymore, see https://github.com/AdmiringWorm/chocolatey-packages/issues/362.
 - If multiple versions of the Qt SDK and/or C++ compilers are already installed, Qt Creator might need to be reconfigured to list them. Please backup `%APPDATA%\QtProject\qtcreator\qtversion.xml` and `%APPDATA%\QtProject\qtcreator\toolchains.xml` before installation and check it after or update Tools\Options\Kits in Qt Creator if needed.
 
 ## Package parameters
