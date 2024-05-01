@@ -1,16 +1,16 @@
 $ErrorActionPreference = 'Stop'; # stop on all errors
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'https://github.com/miurahr/aqtinstall/releases/download/v3.1.12/aqt_x86.exe'
-$url64      = 'https://github.com/miurahr/aqtinstall/releases/download/v3.1.12/aqt_x64.exe'
+$url        = 'https://github.com/miurahr/aqtinstall/releases/download/v3.1.14/aqt_x86.exe'
+$url64      = 'https://github.com/miurahr/aqtinstall/releases/download/v3.1.14/aqt_x64.exe'
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
   fileFullPath  = "$toolsDir\aqt.exe"
   url           = $url
   url64bit      = $url64
-  checksum      = '32FFBAEFE56CFED858B92FCC48B9A3DA2207178281DDFE3D75ABCCC3A1A88B0E'
+  checksum      = 'DD46AC8CFE32189367498BB4E20C5813D536D493D8A656FC01477435DC41DF01'
   checksumType  = 'sha256'
-  checksum64    = 'C07978A5CBACE54394945C67089D3736436A47F84380CE1B632D2188BC7E2CB3'
+  checksum64    = '6C2D9DD85925B003B01990F781A7EAD30945610A9048755E1F87496FFF642DF6'
   checksumType64= 'sha256'
   forceDownload = $true
 }
