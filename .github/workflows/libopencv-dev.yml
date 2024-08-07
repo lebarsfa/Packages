@@ -73,8 +73,8 @@ jobs:
         fetch-depth: 0
         clean: false
     - run: |
-        rem choco install -y -r --no-progress 7zip git cmake make nsis
-        choco install -y -r --no-progress wget unzip patch checksum
+        rem choco install -y -r --no-progress 7zip git cmake make nsis jq
+        choco install -y -r --no-progress wget unzip patch checksum dos2unix
         powershell -Command "Install-WindowsFeature Server-Media-Foundation"
         wget http://www.ensta-bretagne.fr/lebars/Share/windows_server_core_prereq.zip --no-check-certificate -nv
         7z x windows_server_core_prereq.zip -o"%SystemRoot%" -y & cd. & rem ksuser.dll already on windows-2016...?
@@ -111,6 +111,14 @@ jobs:
         git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv.git
         git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv_contrib.git
         patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
+        git config --global user.email "temporary@example.com"
+        git config --global user.name "temporary"
+        cd opencv
+        git fetch origin pull/25632/head:PR25632
+        curl -s https://api.github.com/repos/opencv/opencv/pulls/25632/commits | jq -r '.[] | .sha' | /c/ProgramData/chocolatey/lib/dos2unix/tools/bin/dos2unix -O | while read commit; do git cherry-pick $commit; done
+        git fetch origin pull/25638/head:PR25638
+        curl -s https://api.github.com/repos/opencv/opencv/pulls/25638/commits | jq -r '.[] | .sha' | /c/ProgramData/chocolatey/lib/dos2unix/tools/bin/dos2unix -O | while read commit; do git cherry-pick $commit; done
+        cd ..
         mkdir build
         cd build
         export _RUNTIME=${{ matrix.cfg.runtime }}
