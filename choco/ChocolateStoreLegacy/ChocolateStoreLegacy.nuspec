@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>ChocolateStore</id>
+    <id>ChocolateStoreLegacy</id>
     <version>1.1.0</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/ChocolateStore</packageSourceUrl>
     <owners>lebarsfa</owners>
