@@ -17,10 +17,10 @@ $root = Join-Path $installDir "$CMakePackageName$CMakePackageVer"
 New-Item -ItemType Directory -Force -Path $root | Out-Null
 
 if (!$pp['url']) { 
-	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20230510/libopencv-dev.4.6.0_x86_mingw11_staticlib_Release.exe'
-	$checksum = 'D399EA8897F73B7F0F9693F5B9C60CE83C22E96ABD79BF03D1A2C77E0ED59957'
-	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20230510/libopencv-dev.4.6.0_x64_mingw11_staticlib_Release.exe'
-	$checksum64 = 'E4055BF4D3FF337153B9F1D3E29085BBE04DE04834E0C5D05E0F76D08797F37A'
+	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x86_mingw11_staticlib_Release.exe'
+	$checksum = 'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'
+	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_mingw11_staticlib_Release.exe'
+	$checksum64 = 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
 	if ($pp['32and64']) {
 		$packageArgs = @{
 			packageName   = $env:ChocolateyPackageName
@@ -53,10 +53,10 @@ if (!$pp['url']) {
 		Install-ChocolateyZipPackage @packageArgs
 	}
 
-	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20230510/libopencv-dev.4.6.0_x86_mingw11_lib_Release.exe'
-	$checksum = '8870642B6943B182ED7769CE5FAC2E8D3FF673BE17C3312C581586C7D376B381'
-	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20230510/libopencv-dev.4.6.0_x64_mingw11_lib_Release.exe'
-	$checksum64 = '193970D261B98505E579E227B1F2451B956ED7F5C65D4C6AA359FEF6626C7370'
+	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x86_mingw11_lib_Release.exe'
+	$checksum = 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_mingw11_lib_Release.exe'
+	$checksum64 = 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD'
 	if ($pp['32and64']) {
 		$packageArgs = @{
 			packageName   = $env:ChocolateyPackageName
