@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>libopencv-dev</id>
-    <version>4.6.0.20240807</version>
+    <version>4.6.0.20240808</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.4.6.0/choco/libopencv-dev</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Development files for OpenCV</title>
