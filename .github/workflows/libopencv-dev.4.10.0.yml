@@ -1,9 +1,9 @@
 env:
-    OPENCVVER: 4.9.0
+    OPENCVVER: 4.10.0
 
 on:
     push:
-        branches: 'libopencv-dev.4.9.0'
+        branches: 'libopencv-dev.4.10.0'
         tags: '' # Restrict to blank tags
     pull_request:
 
