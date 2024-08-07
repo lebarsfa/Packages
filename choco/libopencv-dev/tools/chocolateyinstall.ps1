@@ -17,9 +17,9 @@ $root = Join-Path $installDir "$CMakePackageName$CMakePackageVer"
 New-Item -ItemType Directory -Force -Path $root | Out-Null
 
 if (!$pp['url']) { 
-	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x86_mingw11_staticlib_Release.exe'
+	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x86_mingw13_staticlib_Release.exe'
 	$checksum = 'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'
-	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_mingw11_staticlib_Release.exe'
+	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_mingw13_staticlib_Release.exe'
 	$checksum64 = 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
 	if ($pp['32and64']) {
 		$packageArgs = @{
@@ -53,9 +53,9 @@ if (!$pp['url']) {
 		Install-ChocolateyZipPackage @packageArgs
 	}
 
-	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x86_mingw11_lib_Release.exe'
+	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x86_mingw13_lib_Release.exe'
 	$checksum = 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
-	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_mingw11_lib_Release.exe'
+	$url64 = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_mingw13_lib_Release.exe'
 	$checksum64 = 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD'
 	if ($pp['32and64']) {
 		$packageArgs = @{
