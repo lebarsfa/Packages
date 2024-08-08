@@ -1,0 +1,10 @@
+--- 3rdparty/ade/ade-0.1.1f/sources/ade/include/ade/typed_graph.hpp	Wed Aug  7 10:55:16 2019
++++ 3rdparty/ade/ade-0.1.1f/sources/ade/include/ade/typed_graph.hpp	Thu Aug  8 16:09:54 2024
+@@ -9,6 +9,7 @@
+ #ifndef ADE_TYPED_GRAPH_HPP
+ #define ADE_TYPED_GRAPH_HPP
+ 
++#include <cstdint>
+ #include <unordered_set>
+ #include <string>
+ 
