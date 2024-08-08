@@ -123,6 +123,7 @@ jobs:
         cd build
         export _RUNTIME=${{ matrix.cfg.runtime }}
         cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=ON -D BUILD_opencv_python3=OFF -D BUILD_SHARED_LIBS=${{ matrix.cfg.shared }} -D BUILD_WITH_DEBUG_INFO=OFF -D BUILD_DOCS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_TESTS=OFF -D BUILD_opencv_world=${{ matrix.cfg.shared }} -D WITH_CUDA=OFF ../opencv
+        patch -p0 -i ../choco/libopencv-dev/tools/ade-0.1.1f_mingw13.patch
         cmake --build . -j 4 --config ${{ matrix.cfg.cmake_config }} --target package
         if [[ ${{ matrix.cfg.shared }} = OFF ]]; then export _STATIC=static ; else unset _STATIC ; fi
         mv *.exe ../libopencv-dev.${{ env.OPENCVVER }}_${{ matrix.cfg.arch }}_${{ matrix.cfg.runtime }}_${_STATIC}lib_${{ matrix.cfg.cmake_config }}.exe
