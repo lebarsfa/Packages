@@ -118,6 +118,8 @@ jobs:
         curl -s https://api.github.com/repos/opencv/opencv/pulls/25632/commits | jq -r '.[] | .sha' | /c/ProgramData/chocolatey/lib/dos2unix/tools/bin/dos2unix -O | while read commit; do git cherry-pick $commit; done
         git fetch origin pull/25638/head:PR25638
         curl -s https://api.github.com/repos/opencv/opencv/pulls/25638/commits | jq -r '.[] | .sha' | /c/ProgramData/chocolatey/lib/dos2unix/tools/bin/dos2unix -O | while read commit; do git cherry-pick $commit; done
+        git fetch origin 212795db6434743f491ab337ef82ec5b0dbd4383
+        git cherry-pick 212795db6434743f491ab337ef82ec5b0dbd4383
         cd ..
         mkdir build
         cd build
