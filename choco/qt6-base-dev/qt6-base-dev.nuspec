@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>qt6-base-dev</id>
-    <version>6.4.2</version>
+    <version>6.4.2.20240808</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/qt6-base-dev</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Qt 6 SDK</title>
@@ -19,7 +19,7 @@
 Qt 6 base development files.
 
 ## Package info
-- The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/jammy/qt6-base-dev. The MinGW/GCC version is chosen as the current one available on GitHub Actions hosted runners.
+- The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/noble/qt6-base-dev. The MinGW/GCC version is chosen as the current one available on GitHub Actions hosted runners.
 
 ## Quick start
 - After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y qt6-base-dev cmake qtcreator` in PowerShell and then launch Qt Creator to try to create a new Qt Widgets Application.
@@ -45,7 +45,7 @@ To pass parameters, use `--params "''"` (e.g. `choco install qt6-base-dev --para
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
       <dependency id="aqt" version="2.0.6" />
-      <dependency id="mingw" version="[11.2.0.07112021]" />
+      <dependency id="mingw" version="[13.2.0]" />
     </dependencies>
   </metadata>
 </package>
