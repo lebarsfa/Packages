@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>aqt</id>
-    <version>3.2.1</version>
+    <version>3.3.0</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/main/choco/aqt</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Another Qt installer (aqt)</title>
