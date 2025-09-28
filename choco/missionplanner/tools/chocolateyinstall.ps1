@@ -13,8 +13,8 @@ Write-Host "Mission Planner is going to be installed in '$installDir'"
 $root = Join-Path $installDir "Mission Planner"
 New-Item -ItemType Directory -Force -Path $root | Out-Null
 
-$url = 'http://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-1.3.82.zip'
-$checksum = 'E79E1F143C47328E23577CAB3DD1A00D843A5DE5BE4D675520890640805DAC24'
+$url = 'http://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-1.3.83.zip'
+$checksum = 'FF3694F7A9038CAF756545049DD7AEF74E3D0D8FE3586E87AA881045704DD6F9'
 $packageArgs = @{
 	packageName   = $env:ChocolateyPackageName
 	unzipLocation = "$root"
