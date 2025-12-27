@@ -108,8 +108,8 @@ jobs:
         source ~/refreshenv.bashrc ; refreshenv
         export PATH=$BASHMINGWPATH:$PATH
         echo $PATH
-        git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv.git
-        git clone --depth 1 -b ${{ env.OPENCVVER }} https://github.com/opencv/opencv_contrib.git
+        git clone --depth 1 -b 4.x https://github.com/opencv/opencv.git
+        git clone --depth 1 -b 4.x https://github.com/opencv/opencv_contrib.git
         patch -p0 -i choco/libopencv-dev/tools/no_iconv_mingw.patch
         mkdir build
         cd build
