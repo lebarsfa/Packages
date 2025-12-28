@@ -15,8 +15,7 @@ Write-Host "$CMakePackageName$CMakePackageVer is going to be uninstalled from '$
 
 $root = Join-Path $installDir "$CMakePackageName$CMakePackageVer"
 
-try {
-    # Uninstall-ChocolateyPath does not seem always available...
+if (Get-Command Uninstall-ChocolateyPath -ErrorAction SilentlyContinue -CommandType Function) {
     Uninstall-ChocolateyPath "$root\x86\mingw\bin" -PathType 'Machine'
     Uninstall-ChocolateyPath "$root\x64\mingw\bin" -PathType 'Machine'
     Uninstall-ChocolateyPath "$root\x86\vc8\bin"   -PathType 'Machine'
@@ -40,7 +39,7 @@ try {
     Uninstall-ChocolateyPath "$root\x86\vc18\bin"  -PathType 'Machine'
     Uninstall-ChocolateyPath "$root\x64\vc18\bin"  -PathType 'Machine'
 }
-catch {
+else {
     $newpath = [environment]::GetEnvironmentVariable("Path","Machine")
     $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$root\x86\mingw\bin" }) -join ';'
     $newpath = ($newpath.Split(';') | Where-Object { $_ -ne "$root\x64\mingw\bin" }) -join ';'
