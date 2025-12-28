@@ -3,6 +3,19 @@
 # Source variables which are shared between install and uninstall.
 . $PSScriptRoot\sharedVars.ps1
 
+function Assert-SafeUrl {
+	param(
+		[string]$Url,
+		[string]$AllowedPrefix
+	)
+
+	$isLocal    = Test-Path $Url -PathType Any -ErrorAction SilentlyContinue
+	$isAllowed  = $Url.StartsWith($AllowedPrefix, [StringComparison]::OrdinalIgnoreCase)
+	if (-not ($isLocal -or $isAllowed)) {
+		throw "Invalid URL '$Url'. Must be a local path or start with '$AllowedPrefix'."
+	}
+}
+
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
 $pp = Get-PackageParameters
@@ -15,6 +28,8 @@ Write-Host "$CMakePackageName$CMakePackageVer is going to be installed in '$inst
 
 $root = Join-Path $installDir "$CMakePackageName$CMakePackageVer"
 New-Item -ItemType Directory -Force -Path $root | Out-Null
+
+$AllowedUrlPrefix = 'https://github.com/lebarsfa/Packages'
 
 if (!$pp['url']) { 
 	$url = 'https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.13.0.20251227/libopencv-dev.4.13.0_x86_mingw13_staticlib_Release.exe'
@@ -94,6 +109,7 @@ if (!$pp['url']) {
 else {
 	$url = $pp['url']
 	$checksum = $pp['checksum']
+	Assert-SafeUrl $url $AllowedUrlPrefix
 	$packageArgs = @{
 		packageName   = $env:ChocolateyPackageName
 		unzipLocation = "$root"
@@ -162,6 +178,7 @@ for ($i = 1; $i -le 99; $i++) {
 	if ($pp['url'+$i]) {
 		$url = $pp['url'+$i]
 		$checksum = $pp['checksum'+$i]
+		Assert-SafeUrl $url $AllowedUrlPrefix
 		$packageArgs = @{
 			packageName   = $env:ChocolateyPackageName
 			unzipLocation = "$root"
