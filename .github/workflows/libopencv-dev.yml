@@ -3,7 +3,8 @@ env:
 
 on:
     push:
-        branches: ['libopencv-dev.4.13.0']
+        #branches: ['libopencv-dev.4.13.0']
+        branches: ['**']
         tags-ignore: ['**']  # Ignore all tag pushes
     pull_request:
 
