@@ -160,7 +160,7 @@ jobs:
         reg query "HKLM\SOFTWARE\Kitware\CMake\Packages\OpenCV"
         cd ../cv_mat_test
         if [[ ${{ matrix.cfg.shared }} = ON ]]; then export OpenCV_STATIC=OFF ; else export OpenCV_STATIC=ON ; fi
-        cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true
+        cmake ${{ matrix.cfg.cmake_params }} -D OpenCV_ARCH=${{ matrix.cfg.arch }} -D OpenCV_RUNTIME=${_RUNTIME:0:5} -D OpenCV_STATIC=$OpenCV_STATIC . || true # Might cause an error due to https://github.com/opencv/opencv/issues/22348...
         cmake --build . --config ${{ matrix.cfg.cmake_config }}
         file ./${{ matrix.cfg.test_config }}cv_mat_test
         ./${{ matrix.cfg.test_config }}cv_mat_test
