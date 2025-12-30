@@ -17,10 +17,10 @@ jobs:
         fail-fast: false
         matrix:
             cfg:
-            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'ON' , cmake_params: '-G "Visual Studio 18" -T v145 -A arm64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2026 arm64' }
-            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'ON' , cmake_params: '-G "Visual Studio 18" -T v145 -A arm64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2026 arm64 Debug' }
-            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'OFF', cmake_params: '-G "Visual Studio 18" -T v145 -A arm64', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2026 arm64 static' }
-            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'OFF', cmake_params: '-G "Visual Studio 18" -T v145 -A arm64', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2026 arm64 static Debug' }
+            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'ON' , cmake_params: '-G "Visual Studio 18" -T v145 -A arm64 -D CMAKE_POLICY_VERSION_MINIMUM=3.5', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2026 arm64' }
+            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'ON' , cmake_params: '-G "Visual Studio 18" -T v145 -A arm64 -D CMAKE_POLICY_VERSION_MINIMUM=3.5', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2026 arm64 Debug' }
+            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'OFF', cmake_params: '-G "Visual Studio 18" -T v145 -A arm64 -D CMAKE_POLICY_VERSION_MINIMUM=3.5', cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2026 arm64 static' }
+            - { os: windows-11-arm, arch: arm64 , bitness: 64, runtime: vc18   , shared: 'OFF', cmake_params: '-G "Visual Studio 18" -T v145 -A arm64 -D CMAKE_POLICY_VERSION_MINIMUM=3.5', cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2026 arm64 static Debug' }
             - { os: windows-2025  , arch: x64   , bitness: 64, runtime: vc18   , shared: 'ON' , cmake_params: '-G "Visual Studio 18" -T v145 -A x64'  , cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2026 x64' }
             - { os: windows-2025  , arch: x64   , bitness: 64, runtime: vc18   , shared: 'ON' , cmake_params: '-G "Visual Studio 18" -T v145 -A x64'  , cmake_config: 'Debug', test_config: 'Debug/', desc: 'Visual Studio 2026 x64 Debug' }
             - { os: windows-2025  , arch: x64   , bitness: 64, runtime: vc18   , shared: 'OFF', cmake_params: '-G "Visual Studio 18" -T v145 -A x64'  , cmake_config: 'Release', test_config: 'Release/', desc: 'Visual Studio 2026 x64 static' }
