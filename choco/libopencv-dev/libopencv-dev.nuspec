@@ -22,7 +22,7 @@ OpenCV development defaults package.
 - The purpose of this package is to be more or less the equivalent of https://packages.ubuntu.com/noble/libopencv-dev. The MinGW/GCC version is chosen as the current one available on GitHub Actions hosted runners. Note that the existing https://community.chocolatey.org/packages/OpenCV official package does not provide binaries for MinGW/GCC.
 
 ## Quick start
-- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y libopencv-dev cmake.install --installargs 'ADD_CMAKE_TO_PATH=System'` in PowerShell, reboot and then get the folder from https://www.ensta-bretagne.fr/lebars/Share/ImageOpenCV454_Ubuntu22.04.zip and inside, try `cmake -G "MinGW Makefiles" .`, then `cmake --build .`, then `.\ImageOpenCV.exe` in a new PowerShell window and check that an image appears in a window.
+- After [installing Chocolatey](https://chocolatey.org/install), run `choco install -y libopencv-dev cmake.install --installargs 'ADD_CMAKE_TO_PATH=System'` in PowerShell, reboot and then get the folder from https://www.ensta-bretagne.fr/lebars/Share/ImageOpenCV460_Ubuntu24.04.zip and inside, try `cmake -G "MinGW Makefiles" .`, then `cmake --build .`, then `.\ImageOpenCV.exe` in a new PowerShell window and check that an image appears in a window.
 
 ## Troubleshooting
 - Check that all the packages and their dependencies were installed, if one failed (e.g. due to network-related errors) try to reinstall it using `--force` or try a previous version...
