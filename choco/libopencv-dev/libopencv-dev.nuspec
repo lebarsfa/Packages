@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>libopencv-dev</id>
-    <version>4.6.0.20240808</version>
+    <version>4.6.0.20251227</version>
     <packageSourceUrl>https://github.com/lebarsfa/Packages/tree/libopencv-dev.4.6.0/choco/libopencv-dev</packageSourceUrl>
     <owners>lebarsfa</owners>
     <title>Development files for OpenCV</title>
@@ -40,7 +40,7 @@ The following package parameters can be set:
 To pass package parameters, use `--params "''"` (e.g. `choco install libopencv-dev --params "'/NoPath /32and64'"`), and to install multiple self-extracting OpenCV packages together (if they are not mutually exclusive due to other reasons), try e.g.
 ```
 choco install -y chocolatey-core.extension
-choco install -y --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_vc17_staticlib_Debug.exe /url1:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_vc17_lib_Debug.exe /url2:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_vc17_staticlib_Release.exe /url3:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20240807/libopencv-dev.4.6.0_x64_vc17_lib_Release.exe'"
+choco install -y --ignore-dependencies libopencv-dev --params "'/url:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20251227/libopencv-dev.4.6.0_x64_vc17_staticlib_Debug.exe /url1:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20251227/libopencv-dev.4.6.0_x64_vc17_lib_Debug.exe /url2:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20251227/libopencv-dev.4.6.0_x64_vc17_staticlib_Release.exe /url3:https://github.com/lebarsfa/Packages/releases/download/libopencv-dev.4.6.0.20251227/libopencv-dev.4.6.0_x64_vc17_lib_Release.exe'"
 ```
     </description>
     <releaseNotes>https://github.com/opencv/opencv/wiki/ChangeLog</releaseNotes>
